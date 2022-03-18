@@ -4,6 +4,7 @@
   background-image: url(../../../images/profile__edit-button.svg);
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 40% 40%;
   border: 1px solid #fff;
   box-sizing: border-box;
   display: inline-block;

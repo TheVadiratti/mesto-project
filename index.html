@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="shortcut icon" href="./images/header__logo.svg" type="image/svg">
+  <title>Mesto</title>
+</head>
+<body class="page">
+
+  <!-- header -->
+
+  <header class="header">
+    <img class="header__logo" src="./images/header__logo.svg" alt="Логотип Место">
+  </header>
+
+  <!-- profile section -->
+
+  <section class="profile">
+    <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="Аватарка">
+    <div class="profile__info">
+      <div class="profile__name-container">
+        <p class="profile__name">Жак-Ив Кусто</p>
+        <div class="profile__edit-button"></div>
+      </div>
+      <p class="profile__description">Исследователь океана</p>
+    </div>
+    <div class="profile__add-button"></div>
+  </section>
+
+  <main>
+
+    <!-- content section -->
+
+    <section class="content">
+      <div class="content__card">
+        <img class="content__image" src="./images/karachaevsk.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Карачаевск</h2>
+          <div class="content__like-button"></div>
+        </div>
+      </div>
+      <div class="content__card">
+        <img class="content__image" src="./images/elbrus.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Гора Эльбрус</h2>
+          <div class="content__like-button content__like_button_active"></div>
+        </div>
+      </div>
+      <div class="content__card">
+        <img class="content__image" src="./images/dombay.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Домбай</h2>
+          <div class="content__like-button"></div>
+        </div>
+      </div>
+      <div class="content__card">
+        <img class="content__image" src="./images/elbrus.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Гора Эльбрус</h2>
+          <div class="content__like-button"></div>
+        </div>
+      </div>
+      <div class="content__card">
+        <img class="content__image" src="./images/dombay.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Домбай</h2>
+          <div class="content__like-button"></div>
+        </div>
+      </div>
+      <div class="content__card">
+        <img class="content__image" src="./images/karachaevsk.jpg" alt="Ваша пикча">
+        <div class="content__container">
+          <h2 class="content__card-heading">Карачаево-Черкесская республика</h2>
+          <div class="content__like-button"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
+  <!-- footer -->
+  
+  <footer class="footer">
+    <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
+  </footer>
+
+  <!-- popup-edit -->
+
+  <div class="popup-edit popup-edit_opened">
+    <div class="popup-edit__overlay"></div>
+    <div class="popup-edit__window">
+      <p class="popup-edit__title">Редактировать профиль</p>
+      <form class="form">
+        <input type="text" class="form__input" placeholder="Жак-Ив Кусто">
+        <input type="text" class="form__input" placeholder="Исследователь океана">
+        <button class="form__button" type="submit">Сохранить</button>
+      </form>
+      <div class="popup-edit__close-button"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+@media screen and (max-width: 1024px) {
+  .profile__name-container {
+    margin: 0 auto 0;
+  }
+}

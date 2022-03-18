@@ -1,0 +1,50 @@
+/* normalize */
+
+@import url(../vendor/normalize.css);
+
+/* fonts */
+
+@import url(../vendor/font.css);
+
+/* blocks */
+
+@import url(../blocks/page/page.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/content/content.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/popup-edit/popup-edit.css);
+@import url(../blocks/form/form.css);
+
+/* elements */
+
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__name-container/profile__name-container.css);
+@import url(../blocks/profile/__description/profile__description.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/content/__card/content__card.css);
+@import url(../blocks/content/__image/content__image.css);
+@import url(../blocks/content/__container/content__container.css);
+@import url(../blocks/content/__card-heading/content__card-heading.css);
+@import url(../blocks/content/__like-button/content__like-button.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup-edit/__overlay/popup-edit__overlay.css);
+@import url(../blocks/popup-edit/__window/popup-edit__window.css);
+@import url(../blocks/popup-edit/__title/popup-edit__title.css);
+@import url(../blocks/popup-edit/__button-text/popup-edit__button-text.css);
+@import url(../blocks/popup-edit/__close-button/popup-edit__close-button.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__button/form__button.css);
+
+/* mod */
+
+@import url(../blocks/popup-edit/_opened/popup-edit_opened.css);
+@import url(../blocks/content/__like-button/_active/content__like_button_active.css);
+
+/* form */
+
+@import url(../blocks/popup-edit/__form/form.css);

@@ -2,6 +2,8 @@
   width: 32px;
   height: 32px;
   background-image: url(../../../images/popup-edit__close-button.svg);
+  background-size: cover;
+  background-position: center center;
   position: absolute;
   top: -40px;
   right: -40px;

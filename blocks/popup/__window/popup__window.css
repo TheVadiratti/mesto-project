@@ -1,10 +1,8 @@
-.popup-edit__window {
+.popup__window {
   width: 34%;
   max-width: 430px;
   min-width: 282px;
-  position: fixed;
-  top: auto;
-  left: auto;
+  position: relative;
   border-radius: 10px;
   background-color: #fff;
   z-index: 100;

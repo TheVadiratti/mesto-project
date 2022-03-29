@@ -2,8 +2,6 @@ let popup = document.querySelector('.popup');
 let editButton = document.querySelector('.profile__edit-button');
 let closeButton = document.querySelector('.popup__close-button');
 let input = document.querySelectorAll('.popup__input');
-let likeButtons = document.querySelector('.content__like-button');
-console.log(input);
 
 // editWindow
 
@@ -16,8 +14,10 @@ editButton.addEventListener('click', editWindowToggle);
 closeButton.addEventListener('click', editWindowToggle);
 
 // like
-
-function like() {
-  likeButtons.classList.toggle('content__like-button_active');
+let likeButtons = document.querySelectorAll('.content__like-button');
+for (let i = 0; i < likeButtons.length; i++) {
+  likeButtons[i].addEventListener('click', function (event) {
+    event.target.classList.toggle('content__like-button_active');
+    console.log(event.target);
+  })
 };
-likeButtons.addEventListener('click', like);

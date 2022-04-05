@@ -35,48 +35,15 @@
     <!-- content section -->
 
     <section class="content">
-      <div class="content__card">
-        <img class="content__image" src="./images/karachaevsk.jpg" alt="Старая церковь в Карачаевске">
-        <div class="content__container">
-          <h2 class="content__card-heading">Карачаевск</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
+      <template class="cardTemplate">
+        <div class="content__card">
+          <div class="content__image"></div>
+          <div class="content__container">
+            <h2 class="content__card-heading"></h2>
+            <button type="button" class="content__like-button" aria-label="Лайк"></button>
+          </div>
         </div>
-      </div>
-      <div class="content__card">
-        <img class="content__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="content__container">
-          <h2 class="content__card-heading">Гора Эльбрус</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
-        </div>
-      </div>
-      <div class="content__card">
-        <img class="content__image" src="./images/dombay.jpg" alt="Горнолыжный курорт Домбай">
-        <div class="content__container">
-          <h2 class="content__card-heading">Домбай</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
-        </div>
-      </div>
-      <div class="content__card">
-        <img class="content__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="content__container">
-          <h2 class="content__card-heading">Гора Эльбрус</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
-        </div>
-      </div>
-      <div class="content__card">
-        <img class="content__image" src="./images/dombay.jpg" alt="Горнолыжный курорт Домбай">
-        <div class="content__container">
-          <h2 class="content__card-heading">Домбай</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
-        </div>
-      </div>
-      <div class="content__card">
-        <img class="content__image" src="./images/karachaevsk.jpg" alt="Старая церковь в Карачаевске">
-        <div class="content__container">
-          <h2 class="content__card-heading">Карачаево-Черкесская республика</h2>
-          <button type="button" class="content__like-button" aria-label="Лайк"></button>
-        </div>
-      </div>
+      </template>
     </section>
 
   </main>
@@ -100,6 +67,21 @@
       <button type="button" class="popup__close-button" aria-label="Закрыть окно редактирования профиля"></button>
     </div>
   </div>
+
+  <!-- popup-add -->
+
+  <div class="popup">
+    <div class="popup__window">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="addForm">
+        <input type="text" class="popup__input" name="name" placeholder="Название">
+        <input type="text" class="popup__input" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
+      <button type="button" class="popup__close-button" aria-label="Закрыть окно добавления места"></button>
+    </div>
+  </div>
+
   <script src="./index.js"></script>
 </body>
 </html>

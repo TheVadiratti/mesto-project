@@ -1,9 +1,11 @@
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
-let popupForm = document.querySelector('.popup__form');
+let editPopupForm = document.querySelectorAll('.popup__form')[0];
+let addPopupForm = document.querySelectorAll('.popup__form')[1];
 const popup = document.querySelectorAll('.popup');
 const input = document.querySelectorAll('.popup__input');
 const closeButton = document.querySelectorAll('.popup__close-button');
+console.log(addPopupForm);
 
 // editWindow
 
@@ -20,25 +22,49 @@ closeButton[0].addEventListener('click', editWindowToggle);
 
 function addWindowToggle() {
   popup[1].classList.toggle('popup_opened');
+  input[2].value = '';
+  input[3].value = '';
 };
 let addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', addWindowToggle);
 closeButton[1].addEventListener('click', addWindowToggle);
 
-// formSubmit
+// editFormSubmit
 
-function formSubmitHandler (evt) {
+function editFormSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = input[0].value;
   profileDescription.textContent = input[1].value;
   editWindowToggle();
 }
 
-popupForm.addEventListener('submit', formSubmitHandler);
+editPopupForm.addEventListener('submit', editFormSubmitHandler);
 
-// added card
+// addFormSubmit
 
-const initialCards = [
+function addFormSubmitHandler (evt) {
+  evt.preventDefault();
+  initialCardsArray.unshift({});
+  initialCardsArray[0].name = input[2].value;
+  initialCardsArray[0].link = input[3].value;
+  removeCards();
+  initialCards();
+  like();
+  addWindowToggle();
+}
+
+addPopupForm.addEventListener('submit', addFormSubmitHandler);
+
+function removeCards() {
+  for (let i = 0; i < 6; i++) {
+    listCards = pageContent.querySelectorAll('.content__card');
+    listCards[0].remove();
+  }
+}
+
+// initial cards
+
+const initialCardsArray = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -68,20 +94,23 @@ const initialCards = [
 const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
-function addCards() {
-  for (let i = 0; i < 6; i++) {
+function initialCards() {
+  for (i = 0; i < 6; i++) {
     let cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-    cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCards[i].link})`;
-    cardCopy.querySelector('.content__card-heading').textContent = initialCards[i].name;
+    cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[i].link})`;
+    cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[i].name;
     pageContent.append(cardCopy);
   }
 };
-addCards();
+initialCards();
 
 // like
-const likeButtons = document.querySelectorAll('.content__like-button');
-likeButtons.forEach(function (item) {
-  item.addEventListener('click', function (event) {
-    event.target.classList.toggle('content__like-button_active');
-  })
-});
+function like() {
+  const likeButtons = document.querySelectorAll('.content__like-button');
+  likeButtons.forEach(function (item) {
+    item.addEventListener('click', function (event) {
+      event.target.classList.toggle('content__like-button_active');
+    })
+  });
+}
+like();

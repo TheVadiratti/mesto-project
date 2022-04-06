@@ -1,0 +1,13 @@
+.content__remove-button {
+  width: 18px;
+  height: 19px;
+  margin: 20px 20px auto auto;
+  padding: 0;
+  border: none;
+  background-color: inherit;
+  background-image: url(../../../images/content__remove-button.svg);
+}
+
+.content__remove-button:hover {
+  opacity: 0.6;
+}

@@ -1,4 +1,6 @@
 .content__image {
+  display: flex;
+  flex-direction: row-reverse;
   background-size: cover;
   background-position: center;
   width: 100%;

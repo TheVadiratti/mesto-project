@@ -41,6 +41,8 @@ function editFormSubmitHandler (evt) {
 editPopupForm.addEventListener('submit', editFormSubmitHandler);
 
 // addFormSubmit
+// Написать код добовляющий в разметку (в начало) элемент без вызова функции - самостоятельно.
+// removeCards и initialCards будут лишними. После фикса посмотреть не является ли первая функция лишней.
 
 function addFormSubmitHandler (evt) {
   evt.preventDefault();
@@ -49,6 +51,7 @@ function addFormSubmitHandler (evt) {
   initialCardsArray[0].link = input[3].value;
   removeCards();
   initialCards();
+  remove();
   like();
   addWindowToggle();
 }
@@ -56,7 +59,7 @@ function addFormSubmitHandler (evt) {
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
 
 function removeCards() {
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < arrayLength; i++) {
     listCards = pageContent.querySelectorAll('.content__card');
     listCards[0].remove();
   }
@@ -64,7 +67,7 @@ function removeCards() {
 
 // initial cards
 
-const initialCardsArray = [
+let initialCardsArray = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -91,11 +94,12 @@ const initialCardsArray = [
   }
 ];
 
+const arrayLength = initialCardsArray.length;
 const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
 function initialCards() {
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < arrayLength; i++) {
     let cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
     cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[i].link})`;
     cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[i].name;
@@ -105,12 +109,32 @@ function initialCards() {
 initialCards();
 
 // like
+
 function like() {
   const likeButtons = document.querySelectorAll('.content__like-button');
   likeButtons.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.target.classList.toggle('content__like-button_active');
     })
-  });
+  })
 }
 like();
+
+// remove
+
+function remove() {
+  const removeButtons = document.querySelectorAll('.content__remove-button');
+  removeButtons.forEach(function (item) {
+    item.addEventListener('click', function (event) {
+      event.target.closest('.content__card').remove();
+      // remove from array
+      let targetElement = event.target.closest('.content__card');
+      console.log(targetElement.querySelector('.content__card-heading').textContent);
+      initialCardsArray = initialCardsArray.filter(function (item) {
+        return targetElement.querySelector('.content__card-heading').textContent !== item.name;
+      })
+      console.log(initialCardsArray);
+    })
+  })
+}
+remove();

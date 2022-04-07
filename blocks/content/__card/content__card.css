@@ -1,5 +1,22 @@
+@keyframes hoverCard {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(5px, -5px);
+  }
+}
+
 .content__card {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.content__card:hover {
+  animation: hoverCard;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1)
 }

@@ -41,29 +41,25 @@ function editFormSubmitHandler (evt) {
 editPopupForm.addEventListener('submit', editFormSubmitHandler);
 
 // addFormSubmit
-// Написать код добовляющий в разметку (в начало) элемент без вызова функции - самостоятельно.
-// removeCards и initialCards будут лишними. После фикса посмотреть не является ли первая функция лишней.
 
 function addFormSubmitHandler (evt) {
   evt.preventDefault();
   initialCardsArray.unshift({});
   initialCardsArray[0].name = input[2].value;
   initialCardsArray[0].link = input[3].value;
-  removeCards();
-  initialCards();
+  let cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
+  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[0].link})`;
+  cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[0].name;
+  pageContent.prepend(cardCopy);
+  let addedLikeButton = document.querySelector('.content__like-button');
+  addedLikeButton.addEventListener('click', function (event) {
+    event.target.classList.toggle('content__like-button_active');
+  })
   remove();
-  like();
   addWindowToggle();
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
-
-function removeCards() {
-  for (let i = 0; i < arrayLength; i++) {
-    listCards = pageContent.querySelectorAll('.content__card');
-    listCards[0].remove();
-  }
-}
 
 // initial cards
 
@@ -105,13 +101,14 @@ function initialCards() {
     cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[i].name;
     pageContent.append(cardCopy);
   }
-};
+}
 initialCards();
 
 // like
 
 function like() {
-  const likeButtons = document.querySelectorAll('.content__like-button');
+  let likeButtons = document.querySelectorAll('.content__like-button');
+  console.log(likeButtons);
   likeButtons.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.target.classList.toggle('content__like-button_active');
@@ -123,17 +120,16 @@ like();
 // remove
 
 function remove() {
-  const removeButtons = document.querySelectorAll('.content__remove-button');
+  let removeButtons = document.querySelectorAll('.content__remove-button');
+  console.log(removeButtons);
   removeButtons.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.target.closest('.content__card').remove();
       // remove from array
       let targetElement = event.target.closest('.content__card');
-      console.log(targetElement.querySelector('.content__card-heading').textContent);
       initialCardsArray = initialCardsArray.filter(function (item) {
         return targetElement.querySelector('.content__card-heading').textContent !== item.name;
       })
-      console.log(initialCardsArray);
     })
   })
 }

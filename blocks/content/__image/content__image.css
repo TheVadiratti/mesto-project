@@ -7,3 +7,7 @@
   height: 282px;
   vertical-align: middle;
 }
+
+.content__image:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.popup-img__caption {
+  width: inherit;
+  color: #fff;
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

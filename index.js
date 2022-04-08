@@ -55,7 +55,7 @@ function addFormSubmitHandler (evt) {
     event.target.classList.toggle('content__like-button_active');
   })
   remove();
-  popupImageOpen()
+  popupImageOpen();
   addWindowToggle();
 }
 
@@ -148,13 +148,16 @@ function popupImageOpen() {
   targetImages.forEach(function (item) {
     item.addEventListener('click', function (event) {
       console.log(event.target);
-      document.querySelector('.footer').after(popupImageCopy);
-      popupImage = document.querySelector('.popup-img');
-      contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
-      popupImage.querySelector('.popup-img__image').setAttribute('src', `${contentImageURL}`);
-      popupImage.querySelector('.popup-img__caption').textContent = event.target.parentNode.querySelector('.content__card-heading').textContent;
-      popupImage.classList.add('popup-img_opened');
-      popupImageClose();
+      if (event.target.innerHTML !== document.querySelector('.content__remove-button').innerHTML) {
+        console.log(event.target);
+        document.querySelector('.footer').after(popupImageCopy);
+        popupImage = document.querySelector('.popup-img');
+        contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
+        popupImage.querySelector('.popup-img__image').setAttribute('src', `${contentImageURL}`);
+        popupImage.querySelector('.popup-img__caption').textContent = event.target.parentNode.textContent;
+        popupImage.classList.add('popup-img_opened');
+        popupImageClose();
+      }
     })
   })
 }

@@ -3,7 +3,7 @@ let profileDescription = document.querySelector('.profile__description');
 let popup = document.querySelectorAll('.popup');
 const input = document.querySelectorAll('.popup__input');
 const closeButton = document.querySelectorAll('.popup__close-button');
-let initialCardsArray = [
+let initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -75,40 +75,40 @@ const addPopupForm = document.querySelectorAll('.popup__form')[1];
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
-  initialCardsArray.unshift({});
-  initialCardsArray[0].name = input[2].value;
-  initialCardsArray[0].link = input[3].value;
+  initialCards.unshift({});
+  initialCards[0].name = input[2].value;
+  initialCards[0].link = input[3].value;
   const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[0].link})`;
-  cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[0].name;
+  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCards[0].link})`;
+  cardCopy.querySelector('.content__card-heading').textContent = initialCards[0].name;
   pageContent.prepend(cardCopy);
   const addedLikeButton = document.querySelector('.content__like-button');
   addedLikeButton.addEventListener('click', function (event) {
     event.target.classList.toggle('content__like-button_active');
   })
-  remove();
-  popupImageOpen();
+  removeCard();
+  openImagePopup();
   addWindowToggle();
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
 
-// initialCards
+// addCards
 
-const arrayLength = initialCardsArray.length;
+const arrayLength = initialCards.length;
 const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
-function initialCards() {
+function addCards() {
   for (i = 0; i < arrayLength; i++) {
     const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-    cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[i].link})`;
-    cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[i].name;
+    cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCards[i].link})`;
+    cardCopy.querySelector('.content__card-heading').textContent = initialCards[i].name;
     pageContent.append(cardCopy);
   }
 }
 
-initialCards();
+addCards();
 
 // like
 
@@ -122,30 +122,30 @@ likeButtons.forEach(function (item) {
 
 // remove
 
-function remove() {
+function removeCard() {
   const removeButtons = document.querySelectorAll('.content__remove-button');
   removeButtons.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.target.closest('.content__card').remove();
       // remove from array
       let targetElement = event.target.closest('.content__card');
-      initialCardsArray = initialCardsArray.filter(function (item) {
+      initialCards = initialCards.filter(function (item) {
         return targetElement.querySelector('.content__card-heading').textContent !== item.name;
       })
     })
   })
 }
 
-remove();
+removeCard();
 
-// popupImageOpen
+// openImagePopup
 
 const popupImageTemplate = document.querySelector('.popupImageTemplate').content;
 const popupImageCopy = popupImageTemplate.querySelector('.popup-img').cloneNode(true);
 let popupImage;
 let contentImageURL;
 
-function popupImageOpen() {
+function openImagePopup() {
   let targetImages = pageContent.querySelectorAll('.content__image');
   targetImages.forEach(function (item) {
     item.addEventListener('click', function (event) {
@@ -156,17 +156,17 @@ function popupImageOpen() {
         popupImage.querySelector('.popup-img__image').setAttribute('src', `${contentImageURL}`);
         popupImage.querySelector('.popup-img__caption').textContent = event.target.parentNode.textContent;
         popupImage.classList.add('popup-img_opened');
-        popupImageClose();
+        closeImagePopup();
       }
     })
   })
 }
 
-popupImageOpen();
+openImagePopup();
 
-// popupImageClose
+// closeImagePopup
 
-function popupImageClose() {
+function closeImagePopup() {
   imageCloseButton = document.querySelector('.popup-img__close-button');
   imageCloseButton.addEventListener('click', function() {
     popupImage.remove();

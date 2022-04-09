@@ -1,9 +1,15 @@
 .popup-img__caption {
-  width: inherit;
+  max-width: 291px;
   color: #fff;
   font-size: 12px;
   line-height: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 767px) {
+  .popup-img__caption {
+    max-width: 240px;
+  }
 }

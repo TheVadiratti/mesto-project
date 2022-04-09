@@ -1,68 +1,8 @@
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
-let editPopupForm = document.querySelectorAll('.popup__form')[0];
-let addPopupForm = document.querySelectorAll('.popup__form')[1];
 let popup = document.querySelectorAll('.popup');
 const input = document.querySelectorAll('.popup__input');
-let closeButton = document.querySelectorAll('.popup__close-button');
-
-// editWindow
-
-function editWindowToggle() {
-  popup[0].classList.toggle('popup_opened');
-  input[0].value = profileName.textContent;
-  input[1].value = profileDescription.textContent;
-};
-let editButton = document.querySelector('.profile__edit-button');
-editButton.addEventListener('click', editWindowToggle);
-closeButton[0].addEventListener('click', editWindowToggle);
-
-// addWindow
-
-function addWindowToggle() {
-  popup[1].classList.toggle('popup_opened');
-  input[2].value = '';
-  input[3].value = '';
-};
-let addButton = document.querySelector('.profile__add-button');
-addButton.addEventListener('click', addWindowToggle);
-closeButton[1].addEventListener('click', addWindowToggle);
-
-// editFormSubmit
-
-function editFormSubmitHandler (evt) {
-  evt.preventDefault();
-  profileName.textContent = input[0].value;
-  profileDescription.textContent = input[1].value;
-  editWindowToggle();
-}
-
-editPopupForm.addEventListener('submit', editFormSubmitHandler);
-
-// addFormSubmit
-
-function addFormSubmitHandler (evt) {
-  evt.preventDefault();
-  initialCardsArray.unshift({});
-  initialCardsArray[0].name = input[2].value;
-  initialCardsArray[0].link = input[3].value;
-  let cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[0].link})`;
-  cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[0].name;
-  pageContent.prepend(cardCopy);
-  let addedLikeButton = document.querySelector('.content__like-button');
-  addedLikeButton.addEventListener('click', function (event) {
-    event.target.classList.toggle('content__like-button_active');
-  })
-  remove();
-  popupImageOpen();
-  addWindowToggle();
-}
-
-addPopupForm.addEventListener('submit', addFormSubmitHandler);
-
-// initial cards
-
+const closeButton = document.querySelectorAll('.popup__close-button');
 let initialCardsArray = [
   {
     name: 'Архыз',
@@ -90,13 +30,78 @@ let initialCardsArray = [
   }
 ];
 
+// editWindow
+
+const editButton = document.querySelector('.profile__edit-button');
+
+function editWindowToggle() {
+  popup[0].classList.toggle('popup_opened');
+  input[0].value = profileName.textContent;
+  input[1].value = profileDescription.textContent;
+};
+
+editButton.addEventListener('click', editWindowToggle);
+closeButton[0].addEventListener('click', editWindowToggle);
+
+// addWindow
+
+const addButton = document.querySelector('.profile__add-button');
+
+function addWindowToggle() {
+  popup[1].classList.toggle('popup_opened');
+  input[2].value = '';
+  input[3].value = '';
+}
+
+addButton.addEventListener('click', addWindowToggle);
+closeButton[1].addEventListener('click', addWindowToggle);
+
+// editFormSubmit
+
+const editPopupForm = document.querySelectorAll('.popup__form')[0];
+
+function editFormSubmitHandler (evt) {
+  evt.preventDefault();
+  profileName.textContent = input[0].value;
+  profileDescription.textContent = input[1].value;
+  editWindowToggle();
+}
+
+editPopupForm.addEventListener('submit', editFormSubmitHandler);
+
+// addFormSubmit
+
+const addPopupForm = document.querySelectorAll('.popup__form')[1];
+
+function addFormSubmitHandler (event) {
+  event.preventDefault();
+  initialCardsArray.unshift({});
+  initialCardsArray[0].name = input[2].value;
+  initialCardsArray[0].link = input[3].value;
+  const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
+  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[0].link})`;
+  cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[0].name;
+  pageContent.prepend(cardCopy);
+  const addedLikeButton = document.querySelector('.content__like-button');
+  addedLikeButton.addEventListener('click', function (event) {
+    event.target.classList.toggle('content__like-button_active');
+  })
+  remove();
+  popupImageOpen();
+  addWindowToggle();
+}
+
+addPopupForm.addEventListener('submit', addFormSubmitHandler);
+
+// initialCards
+
 const arrayLength = initialCardsArray.length;
 const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
 function initialCards() {
   for (i = 0; i < arrayLength; i++) {
-    let cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
+    const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
     cardCopy.querySelector('.content__image').style.backgroundImage = `url(${initialCardsArray[i].link})`;
     cardCopy.querySelector('.content__card-heading').textContent = initialCardsArray[i].name;
     pageContent.append(cardCopy);
@@ -107,21 +112,18 @@ initialCards();
 
 // like
 
-function like() {
-  let likeButtons = document.querySelectorAll('.content__like-button');
-  likeButtons.forEach(function (item) {
-    item.addEventListener('click', function (event) {
-      event.target.classList.toggle('content__like-button_active');
-    })
-  })
-}
 
-like();
+const likeButtons = document.querySelectorAll('.content__like-button');
+likeButtons.forEach(function (item) {
+  item.addEventListener('click', function (event) {
+    event.target.classList.toggle('content__like-button_active');
+  })
+})
 
 // remove
 
 function remove() {
-  let removeButtons = document.querySelectorAll('.content__remove-button');
+  const removeButtons = document.querySelectorAll('.content__remove-button');
   removeButtons.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.target.closest('.content__card').remove();
@@ -147,9 +149,7 @@ function popupImageOpen() {
   let targetImages = pageContent.querySelectorAll('.content__image');
   targetImages.forEach(function (item) {
     item.addEventListener('click', function (event) {
-      console.log(event.target);
       if (event.target.innerHTML !== document.querySelector('.content__remove-button').innerHTML) {
-        console.log(event.target);
         document.querySelector('.footer').after(popupImageCopy);
         popupImage = document.querySelector('.popup-img');
         contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
@@ -161,7 +161,10 @@ function popupImageOpen() {
     })
   })
 }
+
 popupImageOpen();
+
+// popupImageClose
 
 function popupImageClose() {
   imageCloseButton = document.querySelector('.popup-img__close-button');

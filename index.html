@@ -58,44 +58,45 @@
 
   <!-- popup-edit -->
 
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="editForm">
-        <input type="text" class="popup__input" name="name">
-        <input type="text" class="popup__input" name="description">
+      <form class="popup__form popup__form_type_edit" name="editForm">
+        <input type="text" class="popup__input popup__input_type_edit-name" name="name" placeholder="Имя">
+        <input type="text" class="popup__input popup__input_type_edit-description" name="description" placeholder="О себе">
         <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
-      <button type="button" class="popup__close-button" aria-label="Закрыть окно редактирования профиля"></button>
+      <button type="button" class="popup__close-button popup__close-button_type_profile" aria-label="Закрыть окно редактирования профиля"></button>
     </div>
   </div>
 
   <!-- popup-add -->
 
-  <div class="popup">
+  <div class="popup popup_type_add-image">
     <div class="popup__window">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="addForm">
-        <input type="text" class="popup__input" name="name" placeholder="Название">
-        <input type="text" class="popup__input" name="link" placeholder="Ссылка на картинку">
+      <form class="popup__form popup__form_type_add-image" name="addForm">
+        <input type="text" class="popup__input popup__input_type_add-name" name="name" placeholder="Название">
+        <input type="text" class="popup__input popup__input_type_add-link" name="link" placeholder="Ссылка на картинку">
         <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
-      <button type="button" class="popup__close-button" aria-label="Закрыть окно добавления места"></button>
+      <button type="button" class="popup__close-button popup__close-button_type_add-image" aria-label="Закрыть окно добавления места"></button>
     </div>
   </div>
 
   <!-- popup-image  -->
 
-  <template class="popupImageTemplate">
-    <div class="popup-img">
-      <figure class="popup-img__figure">
-        <img class="popup-img__image">
-        <button type="button" class="popup-img__close-button" aria-label="Закрыть окно просмотра фотографии"></button>
-        <figcaption class="popup-img__caption"></figcaption>
-      </figure>
-    </div>
-  </template>
+  <div class="popup popup_type_image">
+    <figure class="popup__figure">
+      <img class="popup__image">
+      <button type="button" class="popup__close-button popup__close-button_type_image" aria-label="Закрыть окно просмотра фотографии"></button>
+      <figcaption class="popup__caption"></figcaption>
+    </figure>
+  </div>
+  
+  <!-- scripts -->
 
+  <script src="./initialCards.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>

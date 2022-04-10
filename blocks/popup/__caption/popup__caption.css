@@ -1,4 +1,4 @@
-.popup-img__caption {
+.popup__caption {
   max-width: 291px;
   color: #fff;
   font-size: 12px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup-img__caption {
+  .popup__caption {
     max-width: 240px;
   }
 }

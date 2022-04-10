@@ -44,7 +44,7 @@ closeButtonProfile.addEventListener('click', closeEditPopup);
 
 const addButton = document.querySelector('.profile__add-button');
 
-function OpenAddPopup() {
+function openAddPopup() {
   openPopup(popupAdd);
   inputAddName.value = '';
   inputAddLink.value = '';
@@ -54,7 +54,7 @@ function closeAddPopup() {
   closePopup(popupAdd);
 }
 
-addButton.addEventListener('click', OpenAddPopup);
+addButton.addEventListener('click', openAddPopup);
 closeButtonAddImage.addEventListener('click', closeAddPopup);
 
 // editFormSubmit
@@ -110,17 +110,6 @@ function addCards() {
 
 addCards();
 
-// like
-
-function like(card) {
-  const likeButtons = card.querySelector('.content__like-button');
-  likeButtons.forEach(item => {
-    item.addEventListener('click', event => {
-      event.target.classList.toggle('content__like-button_active');
-    })
-  })
-}
-
 // remove
 
 function removeCard(card) {
@@ -130,7 +119,6 @@ function removeCard(card) {
   })
 }  
   
-
 // openImagePopup
 
 let contentImageURL;
@@ -138,7 +126,7 @@ let contentImageURL;
 function openImagePopup(card) {
   const targetImage = card.querySelector('.content__image');
   targetImage.addEventListener('click', event => {
-    if (event.target.innerHTML !== document.querySelector('.content__remove-button').innerHTML) {
+    if (event.target.classList.contains('content__image')) {
       contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
       popupImage.querySelector('.popup__image').setAttribute('src', `${contentImageURL}`);
       popupImage.querySelector('.popup__image').setAttribute('alt', `${event.target.nextElementSibling.firstElementChild.textContent}`);

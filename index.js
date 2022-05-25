@@ -78,8 +78,8 @@ function createCard(name, link) {
   const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
   cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
   cardCopy.querySelector('.content__card-heading').textContent = name;
-  const addedLikeButton = cardCopy.querySelector('.content__like-button');
-  addedLikeButton.addEventListener('click', event => {
+  const addedButton = cardCopy.querySelector('.content__like-button');
+  addedButton.addEventListener('click', event => {
     event.target.classList.toggle('content__like-button_active');
   })
   removeCard(cardCopy);
@@ -103,7 +103,7 @@ const pageContent = document.querySelector('.content');
 
 function addCards() {
   for (i = 0; i < arrayLength; i++) {
-    pageContent.append(createCard(initialCards[i].name, initialCards[i].link))
+    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
   }
   targetImages = pageContent.querySelectorAll('.content__image');
 }

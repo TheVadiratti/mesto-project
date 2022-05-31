@@ -61,9 +61,23 @@
   <div class="popup popup_type_profile">
     <div class="popup__window">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_type_edit" name="editForm">
-        <input type="text" class="popup__input popup__input_type_edit-name" name="name" placeholder="Имя">
-        <input type="text" class="popup__input popup__input_type_edit-description" name="description" placeholder="О себе">
+      <form class="popup__form popup__form_type_edit" name="editForm" novalidate>
+        <input type="text" class="popup__input popup__input_type_edit-name"
+        id="name-input"
+        name="name"
+        placeholder="Имя"
+        minlength="2"
+        maxlength="40"
+        required>
+        <span class="name-input-error popup__error"></span>
+        <input type="text" class="popup__input popup__input_type_edit-description"
+        id="description-input"
+        name="description"
+        placeholder="О себе"
+        minlength="2"
+        maxlength="200"
+        required>
+        <span class="description-input-error popup__error"></span>
         <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
       <button type="button" class="popup__close-button popup__close-button_type_profile" aria-label="Закрыть окно редактирования профиля"></button>
@@ -75,9 +89,21 @@
   <div class="popup popup_type_add-image">
     <div class="popup__window">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_type_add-image" name="addForm">
-        <input type="text" class="popup__input popup__input_type_add-name" name="name" placeholder="Название">
-        <input type="text" class="popup__input popup__input_type_add-link" name="link" placeholder="Ссылка на картинку">
+      <form class="popup__form popup__form_type_add-image" name="addForm" novalidate>
+        <input type="text" class="popup__input popup__input_type_add-name"
+        id="add-name"
+        name="name"
+        placeholder="Название"
+        minlength="2"
+        maxlength="30"
+        required>
+        <span class="add-name-error popup__error"></span>
+        <input type="url" class="popup__input popup__input_type_add-link"
+        id="add-link-input"
+        name="link"
+        placeholder="Ссылка на картинку"
+        required>
+        <span class="add-link-input-error popup__error"></span>
         <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
       <button type="button" class="popup__close-button popup__close-button_type_add-image" aria-label="Закрыть окно добавления места"></button>

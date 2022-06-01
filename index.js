@@ -34,6 +34,17 @@ popupList.forEach(popup => {
   })
 })
 
+// Закрытие попапа при нажатии на Esc
+
+document.addEventListener('keyup', function(event) {
+  const popupActive = document.querySelector('.popup_opened');
+  if(popupActive !== null) {
+    if(event.key === 'Escape') {
+      closePopup(popupActive);
+    }
+  }
+})
+
 // editPopup
 
 const editButton = document.querySelector('.profile__edit-button');

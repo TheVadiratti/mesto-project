@@ -53,10 +53,12 @@ function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
+  enableValidation();
 };
 
 function closeEditPopup() {
   closePopup(popupProfile);
+  removeErrors(popupProfile);
 }
 
 editButton.addEventListener('click', openEditPopup);
@@ -68,12 +70,14 @@ const addButton = document.querySelector('.profile__add-button');
 
 function openAddPopup() {
   openPopup(popupAdd);
+  enableValidation();
   inputAddName.value = '';
   inputAddLink.value = '';
 }
 
 function closeAddPopup() {
   closePopup(popupAdd);
+  removeErrors(popupAdd);
 }
 
 addButton.addEventListener('click', openAddPopup);
@@ -168,6 +172,19 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 
 // !!! VALIDATION !!!
 
+function removeErrors(popup) {
+  const errorsList = Array.from(popup.querySelectorAll('.popup__error'));
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+
+  errorsList.forEach(error => {
+    error.textContent = '';
+  })
+
+  inputList.forEach(input => {
+    input.classList.remove('popup__input_type_error');
+  })
+}
+
 function hasInvalidInput(inputList) {
   return inputList.some(inputElement => {
     return !inputElement.validity.valid;
@@ -203,20 +220,18 @@ function enableValidation() {
     setEventListeners(formElement);
   });
 }
-enableValidation();
+
 
 function showError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
   inputElement.classList.add('popup__input_type_error');
-  errorElement.classList.add('popup__error_opened');
 }
 
 function hideError(formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = '';
   inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__error_opened');
 }
 
 function isValid(formElement, inputElement) {

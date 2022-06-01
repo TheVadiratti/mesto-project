@@ -53,7 +53,7 @@ function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
-  enableValidation();
+  enableValidation(popupProfile);
 };
 
 function closeEditPopup() {
@@ -70,7 +70,7 @@ const addButton = document.querySelector('.profile__add-button');
 
 function openAddPopup() {
   openPopup(popupAdd);
-  enableValidation();
+  enableValidation(popupAdd);
   inputAddName.value = '';
   inputAddLink.value = '';
 }
@@ -214,11 +214,8 @@ function setEventListeners(formElement) {
   });
 }
 
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach(formElement => {
-    setEventListeners(formElement);
-  });
+function enableValidation(formElement) {
+  setEventListeners(formElement);
 }
 
 

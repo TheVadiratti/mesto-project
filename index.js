@@ -10,6 +10,7 @@ const inputAddLink = document.querySelector('.popup__input_type_add-link');
 const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
 const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
 const closeButtonImage = document.querySelector('.popup__close-button_type_image');
+const popupList = Array.from(document.querySelectorAll('.popup'));
 
 // openPopup
 
@@ -22,6 +23,16 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
+
+// Закрытие попапа по клику на оверлей
+
+popupList.forEach(popup => {
+  popup.addEventListener('click', function(event) {
+    if(event.target === popup) {
+      closePopup(popup);
+    }
+  })
+})
 
 // editPopup
 

@@ -35,8 +35,6 @@ function openEditPopup() {
 
 function closeEditPopup() {
   closePopup(popupProfile);
-  hideError(inputEditName, inputEditName.nextElementSibling);
-  hideError(inputEditDescription, inputEditDescription.nextElementSibling);
 }
 
 editButton.addEventListener('click', openEditPopup);

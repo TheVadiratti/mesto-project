@@ -1,3 +1,5 @@
+import { initialCards } from './initialCards.js';
+
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupProfile = document.querySelector('.popup_type_profile');
@@ -128,10 +130,9 @@ const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
 function addCards() {
-  for (i = 0; i < arrayLength; i++) {
+  for (let i = 0; i < arrayLength; i++) {
     pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
   }
-  targetImages = pageContent.querySelectorAll('.content__image');
 }
 
 addCards();
@@ -242,8 +243,3 @@ function isValid(formElement, inputElement) {
     hideError(formElement, inputElement);
   }
 }
-
-const inputsOfForm = Array.from(document.querySelectorAll('.popup__input'));
-inputsOfForm.forEach(input => {
-  input.addEventListener('input', isValid);
-})

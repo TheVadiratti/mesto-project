@@ -165,4 +165,10 @@ function openImagePopup(card) {
 
 // closeImagePopup
 
+function closeImagePopup() {
+  closePopup(popupImage);
+}
+
+closeButtonImage.addEventListener('click', closeImagePopup);
+
 import { removeErrors, enableValidation } from './validation.js';

@@ -2,7 +2,7 @@ const parameters = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
-  inactiveButtonSelector: 'popup__button_inactive',
+  inactiveButtonClass: 'popup__button_inactive',
   inputErrorClass: 'popup__input_type_error',
   errorSelector: '.popup__error'
 }
@@ -57,11 +57,11 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement, prmObject) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add(prmObject.inactiveButtonSelector);
+    buttonElement.classList.add(prmObject.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   }
   else {
-    buttonElement.classList.remove(prmObject.inactiveButtonSelector);
+    buttonElement.classList.remove(prmObject.inactiveButtonClass);
     buttonElement.removeAttribute('disabled', true);
   }
 }

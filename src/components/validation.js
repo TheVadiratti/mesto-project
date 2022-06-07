@@ -1,15 +1,47 @@
+const parameters = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonSelector: 'popup__button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorSelector: '.popup__error'
+}
+
+function enableValidation(prmObject) {
+  const formList = Array.from(document.querySelectorAll(prmObject.formSelector));
+  formList.forEach(formElement => {
+    setEventListeners(formElement, prmObject);
+  })
+}
+
+// Ф для у установки слушаетелей на инпуты формы
+
+function setEventListeners(formElement, prmObject) {
+  const inputList = Array.from(formElement.querySelectorAll(prmObject.inputSelector));
+  const buttonElement = formElement.querySelector(prmObject.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement, prmObject);
+  
+  inputList.forEach(inputElement => {
+    isValid(formElement, inputElement, prmObject);
+    inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement, prmObject);
+      toggleButtonState(inputList, buttonElement, prmObject);
+    })
+  })
+}
+
 // Ф для удаления ошибки при закрытии модального окна
 
-function removeErrors(popup) {
-  const errorsList = Array.from(popup.querySelectorAll('.popup__error'));
-  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
-
+function removeErrors(popup, prmObject) {
+  const errorsList = Array.from(popup.querySelectorAll(prmObject.errorSelector));
+  const inputList = Array.from(popup.querySelectorAll(prmObject.inputSelector));
   errorsList.forEach(error => {
     error.textContent = '';
   })
 
   inputList.forEach(input => {
-    input.classList.remove('popup__input_type_error');
+    input.classList.remove(prmObject.inputErrorClass);
   })
 }
 
@@ -23,67 +55,44 @@ function hasInvalidInput(inputList) {
 
 // Ф для блокировки/разблокировки кнопки
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, prmObject) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__button_inactive');
+    buttonElement.classList.add(prmObject.inactiveButtonSelector);
     buttonElement.setAttribute('disabled', true);
   }
   else {
-    buttonElement.classList.remove('popup__button_inactive');
+    buttonElement.classList.remove(prmObject.inactiveButtonSelector);
     buttonElement.removeAttribute('disabled', true);
   }
 }
 
-// Ф для у установки слушаетелей на инпуты формы
-
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach(inputElement => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-}
-
-// Ф для для включения валидации
-
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach(formElement => {
-    setEventListeners(formElement);
-  });
-}
-
 // Ф для показа ошибки валидации
 
-function showError(formElement, inputElement, errorMessage) {
+function showError(formElement, inputElement, errorMessage, prmObject) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(prmObject.inputErrorClass);
 }
 
 // Ф для удаления ошибки валидации
 
-function hideError(formElement, inputElement) {
+function hideError(formElement, inputElement, prmObject) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = '';
-  inputElement.classList.remove('popup__input_type_error');
+  inputElement.classList.remove(prmObject.inputErrorClass);
 }
 
 // Ф для проверки поля на валидность
 
-function isValid(formElement, inputElement) {
+function isValid(formElement, inputElement, prmObject) {
   if(!inputElement.validity.valid) {
-    showError(formElement, inputElement, inputElement.validationMessage);
+    showError(formElement, inputElement, inputElement.validationMessage, prmObject);
   }
-  else if(inputElement.validity.valid) {
-    hideError(formElement, inputElement);
+  else {
+    hideError(formElement, inputElement, prmObject);
   }
 }
 
 // export
 
-export { removeErrors, enableValidation };
+export { removeErrors, parameters, enableValidation };

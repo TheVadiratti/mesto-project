@@ -1,4 +1,5 @@
-import { removeErrors, enableValidation } from './validation.js';
+import { removeErrors, parameters, enableValidation } from './validation.js';
+import { pageContent } from './cards.js';
 
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
@@ -28,26 +29,26 @@ function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
-  enableValidation();
+  enableValidation(parameters);
 };
 
 function closeEditPopup() {
   closePopup(popupProfile);
-  removeErrors(popupProfile);
+  removeErrors(popupProfile, parameters);
 }
 
 // addPopup
 
 function openAddPopup() {
   openPopup(popupAdd);
-  enableValidation();
   inputAddName.value = '';
   inputAddLink.value = '';
+  enableValidation(parameters);
 }
 
 function closeAddPopup() {
   closePopup(popupAdd);
-  removeErrors(popupAdd);
+  removeErrors(popupAdd, parameters);
 }
 
 // editFormSubmit

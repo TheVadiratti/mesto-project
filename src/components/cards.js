@@ -39,4 +39,4 @@ function addCards() {
     })
   }  
 
-export { addCards, pageContent };
+export { addCards, pageContent, createCard };

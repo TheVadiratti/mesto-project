@@ -1,5 +1,5 @@
 import { removeErrors, parameters, enableValidation } from './validation.js';
-import { pageContent } from './cards.js';
+import { pageContent, createCard } from './cards.js';
 
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');

@@ -7,6 +7,8 @@ const parameters = {
   errorSelector: '.popup__error'
 }
 
+// Ф для включения валидации
+
 function enableValidation(prmObject) {
   const formList = Array.from(document.querySelectorAll(prmObject.formSelector));
   formList.forEach(formElement => {

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <link rel="shortcut icon" href="./images/header__logo.svg" type="image/svg">
   <title>Mesto</title>
 </head>
@@ -13,7 +12,7 @@
   <!-- header -->
 
   <header class="header">
-    <img class="header__logo" src="./images/header__logo.svg" alt="Логотип Место">
+    <div class="header__logo"></div>
   </header>
 
   <main>
@@ -21,7 +20,7 @@
     <!-- profile section -->
 
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="Аватарка">
+      <img class="profile__avatar" src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватарка">
       <div class="profile__info">
         <div class="profile__name-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -119,13 +118,5 @@
       <figcaption class="popup__caption"></figcaption>
     </figure>
   </div>
-  
-  <!-- scripts -->
-
-  <script type="module" src="./src/components/initialCards.js"></script>
-  <script type="module" src="./src/components/index.js"></script>
-  <script type="module" src="./src/components/modal.js"></script>
-  <script type="module" src="./src/components/cards.js"></script>
-  <script type="module" src="./src/components/validation.js"></script>
 </body>
 </html>

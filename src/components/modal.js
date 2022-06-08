@@ -1,3 +1,6 @@
+import { removeErrors, parameters, enableValidation } from './validation.js';
+import { pageContent, createCard } from './cards.js';
+
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupProfile = document.querySelector('.popup_type_profile');
@@ -7,17 +10,14 @@ const inputEditName = document.querySelector('.popup__input_type_edit-name');
 const inputEditDescription = document.querySelector('.popup__input_type_edit-description');
 const inputAddName = document.querySelector('.popup__input_type_add-name');
 const inputAddLink = document.querySelector('.popup__input_type_add-link');
-const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
-const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
-const closeButtonImage = document.querySelector('.popup__close-button_type_image');
 
-// openPopup
+// Ф для открытия модального окна
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-// closePopup
+// Ф для закрытия модального окна
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -25,41 +25,33 @@ function closePopup(popup) {
 
 // editPopup
 
-const editButton = document.querySelector('.profile__edit-button');
-
 function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
+  enableValidation(parameters);
 };
 
 function closeEditPopup() {
   closePopup(popupProfile);
+  removeErrors(popupProfile, parameters);
 }
 
-editButton.addEventListener('click', openEditPopup);
-closeButtonProfile.addEventListener('click', closeEditPopup);
-
 // addPopup
-
-const addButton = document.querySelector('.profile__add-button');
 
 function openAddPopup() {
   openPopup(popupAdd);
   inputAddName.value = '';
   inputAddLink.value = '';
+  enableValidation(parameters);
 }
 
 function closeAddPopup() {
   closePopup(popupAdd);
+  removeErrors(popupAdd, parameters);
 }
 
-addButton.addEventListener('click', openAddPopup);
-closeButtonAddImage.addEventListener('click', closeAddPopup);
-
 // editFormSubmit
-
-const editPopupForm = document.querySelector('.popup__form_type_edit');
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
@@ -68,24 +60,7 @@ function editFormSubmitHandler (event) {
   closePopup(popupProfile);
 }
 
-editPopupForm.addEventListener('submit', editFormSubmitHandler);
-
 // addFormSubmit
-
-const addPopupForm = document.querySelector('.popup__form_type_add-image');
-
-function createCard(name, link) {
-  const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
-  cardCopy.querySelector('.content__card-heading').textContent = name;
-  const addedButton = cardCopy.querySelector('.content__like-button');
-  addedButton.addEventListener('click', event => {
-    event.target.classList.toggle('content__like-button_active');
-  })
-  removeCard(cardCopy);
-  openImagePopup(cardCopy);
-  return cardCopy;
-}
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
@@ -93,32 +68,6 @@ function addFormSubmitHandler (event) {
   closePopup(popupAdd);
 }
 
-addPopupForm.addEventListener('submit', addFormSubmitHandler);
-
-// addCards
-
-const arrayLength = initialCards.length;
-const cardTemplate = document.querySelector('.cardTemplate').content;
-const pageContent = document.querySelector('.content');
-
-function addCards() {
-  for (i = 0; i < arrayLength; i++) {
-    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
-  }
-  targetImages = pageContent.querySelectorAll('.content__image');
-}
-
-addCards();
-
-// remove
-
-function removeCard(card) {
-  const removeButton = card.querySelector('.content__remove-button');
-  removeButton.addEventListener('click', event => {
-    event.target.closest('.content__card').remove();
-  })
-}  
-  
 // openImagePopup
 
 let contentImageURL;
@@ -142,4 +91,14 @@ function closeImagePopup() {
   closePopup(popupImage);
 }
 
-closeButtonImage.addEventListener('click', closeImagePopup);
+export {
+  openEditPopup,
+  closeEditPopup,
+  openAddPopup,
+  closeAddPopup,
+  openImagePopup,
+  closeImagePopup,
+  editFormSubmitHandler,
+  addFormSubmitHandler,
+  closePopup
+};

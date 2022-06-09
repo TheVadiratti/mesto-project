@@ -7,10 +7,17 @@ const arrayLength = initialCards.length;
 const cardTemplate = document.querySelector('.cardTemplate').content;
 const pageContent = document.querySelector('.content');
 
-// createCard !!!
+// getTemplate
+
+function getTemplate(template) {
+  const copy = template.firstElementChild.cloneNode(true);
+  return copy;
+}
+
+// createCard 
 
 function createCard(name, link) {
-  const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
+  const cardCopy = getTemplate(cardTemplate);;
   cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
   cardCopy.querySelector('.content__card-heading').textContent = name;
   const addedButton = cardCopy.querySelector('.content__like-button');

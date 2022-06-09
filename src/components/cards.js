@@ -1,13 +1,19 @@
 import {
-  contentImageURL,
-  cardTemplate
+  cardTemplate,
+  popupImage
 } from './constants';
+
+import {
+  openPopup,
+  handleEscClose
+} from './modal';
 
 // openImagePopup
 
 
 function openImagePopup(card) {
   const targetImage = card.querySelector('.content__image');
+  let contentImageURL;
   targetImage.addEventListener('click', event => {
     if (event.target.classList.contains('content__image')) {
       contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
@@ -15,6 +21,7 @@ function openImagePopup(card) {
       popupImage.querySelector('.popup__image').setAttribute('alt', `${event.target.nextElementSibling.firstElementChild.textContent}`);
       popupImage.querySelector('.popup__caption').textContent = event.target.nextElementSibling.firstElementChild.textContent;
       openPopup(popupImage);
+      document.addEventListener('keyup', handleEscClose);
     }
   })
 }

@@ -10,7 +10,8 @@ import {
   editButton,
   addButton,
   editPopupForm,
-  addPopupForm
+  addPopupForm,
+  pageContent
 } from './constants';
 
 import {
@@ -24,7 +25,8 @@ import {
   closePopup
 } from './modal.js';
 
-import { addCards } from './cards.js';
+import { createCard } from './cards';
+
 
 // МОДАЛЬНЫЕ ОКНА
 
@@ -48,17 +50,6 @@ popupList.forEach(popup => {
   })
 })
 
-  // Закрытие попапа при нажатии на Esc
-
-document.addEventListener('keyup', function(event) {
-  const popupActive = document.querySelector('.popup_opened');
-  if(popupActive !== null) {
-    if(event.key === 'Escape') {
-      closePopup(popupActive);
-    }
-  }
-})
-
   // editFormSubmit
 
 editPopupForm.addEventListener('submit', editFormSubmitHandler);
@@ -74,10 +65,6 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 // КАРТОЧКИ
 
   // addCards
-
-  // addCards
-
-const pageContent = document.querySelector('.content');
 
 function addCards() {
   initialCards.forEach(card => {

@@ -17,9 +17,10 @@ import {
 } from './validation.js';
 
 import {
-  pageContent,
-  createCard
-} from './cards.js';
+  pageContent
+} from './constants';
+
+import { createCard } from './cards';
 
 // Ф для открытия модального окна
 
@@ -33,6 +34,15 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+// Ф для закрытия попапа при нажатии на Esc
+
+function handleEscClose(event) {
+  const popupActive = document.querySelector('.popup_opened');
+  if(event.key === 'Escape') {
+    closePopup(popupActive);
+  }
+}
+
 // editPopup
 
 function openEditPopup() {
@@ -40,11 +50,13 @@ function openEditPopup() {
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
   enableValidation(parameters);
+  document.addEventListener('keyup', handleEscClose);
 };
 
 function closeEditPopup() {
   closePopup(popupProfile);
   removeErrors(popupProfile, parameters);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
 // addPopup
@@ -54,11 +66,13 @@ function openAddPopup() {
   inputAddName.value = '';
   inputAddLink.value = '';
   enableValidation(parameters);
+  document.addEventListener('keyup', handleEscClose);
 }
 
 function closeAddPopup() {
   closePopup(popupAdd);
   removeErrors(popupAdd, parameters);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
 // editFormSubmit
@@ -82,9 +96,12 @@ function addFormSubmitHandler (event) {
 
 function closeImagePopup() {
   closePopup(popupImage);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
 export {
+  openPopup,
+  closePopup,
   openEditPopup,
   closeEditPopup,
   openAddPopup,
@@ -92,5 +109,5 @@ export {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  closePopup
+  handleEscClose
 };

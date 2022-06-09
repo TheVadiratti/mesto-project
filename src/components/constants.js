@@ -1,4 +1,4 @@
-// for index.js
+// for index.js ----------------------------------------------------------------------------
 
 const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
 const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
@@ -8,6 +8,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const editPopupForm = document.querySelector('.popup__form_type_edit');
 const addPopupForm = document.querySelector('.popup__form_type_add-image');
+const pageContent = document.querySelector('.content');
 
 export {
   closeButtonProfile,
@@ -17,10 +18,11 @@ export {
   editButton,
   addButton,
   editPopupForm,
-  addPopupForm
+  addPopupForm,
+  pageContent
 }
 
-// for modal.js
+// for modal.js ----------------------------------------------------------------------------
 
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
@@ -44,12 +46,10 @@ export {
   inputAddLink
 }
 
-// for cards.js
+// for cards.js ----------------------------------------------------------------------------
 
-let contentImageURL;
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
 export {
-  contentImageURL,
   cardTemplate
 }

@@ -63,8 +63,7 @@ function closeEditPopup() {
 
 function openAddPopup() {
   openPopup(popupAdd);
-  inputAddName.value = '';
-  inputAddLink.value = '';
+  popupAdd.querySelector('.popup__form').reset();
   enableValidation(parameters);
   document.addEventListener('keyup', handleEscClose);
 }

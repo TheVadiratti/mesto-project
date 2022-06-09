@@ -1,15 +1,25 @@
-import { removeErrors, parameters, enableValidation } from './validation.js';
-import { pageContent, createCard } from './cards.js';
+import {
+  profileName,
+  profileDescription,
+  popupProfile,
+  popupAdd,
+  popupImage,
+  inputEditName,
+  inputEditDescription,
+  inputAddName,
+  inputAddLink
+} from './constants';
 
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupAdd = document.querySelector('.popup_type_add-image');
-const popupImage = document.querySelector('.popup_type_image');
-const inputEditName = document.querySelector('.popup__input_type_edit-name');
-const inputEditDescription = document.querySelector('.popup__input_type_edit-description');
-const inputAddName = document.querySelector('.popup__input_type_add-name');
-const inputAddLink = document.querySelector('.popup__input_type_add-link');
+import {
+  removeErrors,
+  parameters,
+  enableValidation
+} from './validation.js';
+
+import {
+  pageContent,
+  createCard
+} from './cards.js';
 
 // Ф для открытия модального окна
 

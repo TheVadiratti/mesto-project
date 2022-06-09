@@ -1,6 +1,10 @@
+import {
+  contentImageURL,
+  cardTemplate
+} from './constants';
+
 // openImagePopup
 
-let contentImageURL;
 
 function openImagePopup(card) {
   const targetImage = card.querySelector('.content__image');
@@ -23,8 +27,6 @@ function getTemplate(template) {
 }
 
 // createCard
-
-const cardTemplate = document.querySelector('.cardTemplate').content;
 
 function createCard(name, link) {
   const cardCopy = getTemplate(cardTemplate);

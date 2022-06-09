@@ -1,5 +1,17 @@
 import '../pages/index.css';
+
 import { initialCards } from './initialCards';
+
+import {
+  closeButtonProfile,
+  closeButtonAddImage,
+  closeButtonImage,
+  popupList,
+  editButton,
+  addButton,
+  editPopupForm,
+  addPopupForm
+} from './constants';
 
 import {
   openEditPopup,
@@ -13,15 +25,6 @@ import {
 } from './modal.js';
 
 import { addCards } from './cards.js';
-
-const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
-const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
-const closeButtonImage = document.querySelector('.popup__close-button_type_image');
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const editPopupForm = document.querySelector('.popup__form_type_edit');
-const addPopupForm = document.querySelector('.popup__form_type_add-image');
 
 // МОДАЛЬНЫЕ ОКНА
 

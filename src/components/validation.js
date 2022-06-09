@@ -97,4 +97,8 @@ function isValid(formElement, inputElement, prmObject) {
 
 // export
 
-export { removeErrors, parameters, enableValidation };
+export {
+  removeErrors,
+  parameters,
+  enableValidation
+};

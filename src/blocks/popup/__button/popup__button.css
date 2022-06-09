@@ -13,11 +13,11 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s linear;
+  cursor: pointer;
 }
 
 .popup__button:hover {
   opacity: 0.8;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 1060px) {

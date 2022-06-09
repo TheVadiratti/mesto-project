@@ -10,7 +10,6 @@ import {
 
 // openImagePopup
 
-
 function openImagePopup(card, name, link) {
   card.addEventListener('click', event => {
     // проверка, что нажата не корзинка
@@ -50,7 +49,7 @@ function createCard(name, link) {
   setLikeListener(cardCopy);
   removeCard(cardCopy);
   openImagePopup(cardCopy, name, link);
-  
+
   return cardCopy;
 }
 

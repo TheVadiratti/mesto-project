@@ -68,23 +68,6 @@ function addFormSubmitHandler (event) {
   closePopup(popupAdd);
 }
 
-// openImagePopup
-
-let contentImageURL;
-
-function openImagePopup(card) {
-  const targetImage = card.querySelector('.content__image');
-  targetImage.addEventListener('click', event => {
-    if (event.target.classList.contains('content__image')) {
-      contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
-      popupImage.querySelector('.popup__image').setAttribute('src', `${contentImageURL}`);
-      popupImage.querySelector('.popup__image').setAttribute('alt', `${event.target.nextElementSibling.firstElementChild.textContent}`);
-      popupImage.querySelector('.popup__caption').textContent = event.target.nextElementSibling.firstElementChild.textContent;
-      openPopup(popupImage);
-    }
-  })
-}
-
 // closeImagePopup
 
 function closeImagePopup() {
@@ -96,7 +79,6 @@ export {
   closeEditPopup,
   openAddPopup,
   closeAddPopup,
-  openImagePopup,
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,

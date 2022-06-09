@@ -74,13 +74,12 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 
   // addCards
 
-const arrayLength = initialCards.length;
 const pageContent = document.querySelector('.content');
 
 function addCards() {
-  for (let i = 0; i < arrayLength; i++) {
-    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
-  }
+  initialCards.forEach(card => {
+    pageContent.append(createCard(card.name, card.link));
+  })
 }
 
 addCards();

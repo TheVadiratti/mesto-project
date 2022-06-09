@@ -1,5 +1,3 @@
-import { initialCards } from './initialCards.js';
-
 // openImagePopup
 
 let contentImageURL;
@@ -41,17 +39,6 @@ function createCard(name, link) {
   return cardCopy;
 }
 
-// addCards
-
-const arrayLength = initialCards.length;
-const pageContent = document.querySelector('.content');
-
-function addCards() {
-  for (let i = 0; i < arrayLength; i++) {
-    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
-  }
-}
-
 // removeCard
 
 function removeCard(card) {
@@ -61,4 +48,4 @@ function removeCard(card) {
   })
 }
 
-export { addCards, pageContent, createCard };
+export { createCard };

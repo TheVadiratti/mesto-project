@@ -1,4 +1,5 @@
 import '../pages/index.css';
+import { initialCards } from './initialCards';
 
 import {
   openEditPopup,
@@ -70,5 +71,16 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 // КАРТОЧКИ
 
   // addCards
+
+  // addCards
+
+const arrayLength = initialCards.length;
+const pageContent = document.querySelector('.content');
+
+function addCards() {
+  for (let i = 0; i < arrayLength; i++) {
+    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
+  }
+}
 
 addCards();

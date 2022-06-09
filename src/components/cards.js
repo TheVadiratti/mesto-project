@@ -11,15 +11,13 @@ import {
 // openImagePopup
 
 
-function openImagePopup(card) {
-  const targetImage = card.querySelector('.content__image');
-  let contentImageURL;
-  targetImage.addEventListener('click', event => {
+function openImagePopup(card, name, link) {
+  card.addEventListener('click', event => {
+    // проверка, что нажата не корзинка
     if (event.target.classList.contains('content__image')) {
-      contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
-      popupImage.querySelector('.popup__image').setAttribute('src', `${contentImageURL}`);
-      popupImage.querySelector('.popup__image').setAttribute('alt', `${event.target.nextElementSibling.firstElementChild.textContent}`);
-      popupImage.querySelector('.popup__caption').textContent = event.target.nextElementSibling.firstElementChild.textContent;
+      popupImage.querySelector('.popup__image').setAttribute('src', `${link}`);
+      popupImage.querySelector('.popup__image').setAttribute('alt', `${name}`);
+      popupImage.querySelector('.popup__caption').textContent = name;
       openPopup(popupImage);
       document.addEventListener('keyup', handleEscClose);
     }
@@ -33,18 +31,26 @@ function getTemplate(template) {
   return copy;
 }
 
+// setLikeListener
+
+function setLikeListener(card) {
+  const likeButton = card.querySelector('.content__like-button');
+  likeButton.addEventListener('click', event => {
+    event.target.classList.toggle('content__like-button_active');
+  })
+}
+
 // createCard
 
 function createCard(name, link) {
   const cardCopy = getTemplate(cardTemplate);
   cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
   cardCopy.querySelector('.content__card-heading').textContent = name;
-  const addedButton = cardCopy.querySelector('.content__like-button');
-  addedButton.addEventListener('click', event => {
-    event.target.classList.toggle('content__like-button_active');
-  })
+
+  setLikeListener(cardCopy);
   removeCard(cardCopy);
-  openImagePopup(cardCopy);
+  openImagePopup(cardCopy, name, link);
+  
   return cardCopy;
 }
 

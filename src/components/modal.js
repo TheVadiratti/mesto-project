@@ -8,7 +8,12 @@ import {
   inputEditDescription,
   inputAddName,
   inputAddLink
-} from './constants';
+} from './utilis/constants';
+
+import {
+  openPopup,
+  closePopup
+} from './utilis/utilis';
 
 import {
   removeErrors,
@@ -18,21 +23,7 @@ import {
 
 import {
   pageContent
-} from './constants';
-
-import { createCard } from './cards';
-
-// Ф для открытия модального окна
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-// Ф для закрытия модального окна
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
+} from './utilis/constants';
 
 // Ф для закрытия попапа при нажатии на Esc
 
@@ -99,8 +90,6 @@ function closeImagePopup() {
 }
 
 export {
-  openPopup,
-  closePopup,
   openEditPopup,
   closeEditPopup,
   openAddPopup,

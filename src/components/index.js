@@ -12,7 +12,7 @@ import {
   editPopupForm,
   addPopupForm,
   pageContent
-} from './constants';
+} from './utilis/constants';
 
 import {
   openEditPopup,
@@ -22,10 +22,15 @@ import {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  closePopup
 } from './modal.js';
 
-import { createCard } from './cards';
+import {
+  createCard
+} from './utilis/utilis';
+
+import {
+  closePopup
+} from './utilis/utilis';
 
 
 // МОДАЛЬНЫЕ ОКНА

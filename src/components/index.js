@@ -35,16 +35,6 @@ import {
 
 // МОДАЛЬНЫЕ ОКНА
 
-  // Edit
-
-editButton.addEventListener('click', openEditPopup);
-closeButtonProfile.addEventListener('click', closeEditPopup);
-
-  // Add
-
-addButton.addEventListener('click', openAddPopup);
-closeButtonAddImage.addEventListener('click', closeAddPopup);
-
   // Закрытие попапа по клику на оверлей
 
 popupList.forEach(popup => {
@@ -54,6 +44,18 @@ popupList.forEach(popup => {
     }
   })
 })
+
+  // СЛУШАТЕЛИ
+
+  // Edit
+
+editButton.addEventListener('click', openEditPopup);
+closeButtonProfile.addEventListener('click', closeEditPopup);
+
+  // Add
+
+addButton.addEventListener('click', openAddPopup);
+closeButtonAddImage.addEventListener('click', closeAddPopup);
 
   // editFormSubmit
 

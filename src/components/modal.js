@@ -29,12 +29,13 @@ import {
 
 function handleEscClose(event) {
   const popupActive = document.querySelector('.popup_opened');
+
   if(event.key === 'Escape') {
     closePopup(popupActive);
   }
 }
 
-// editPopup
+// Ф для открытия модального окна изменения данных профиля
 
 function openEditPopup() {
   openPopup(popupProfile);
@@ -44,13 +45,15 @@ function openEditPopup() {
   document.addEventListener('keyup', handleEscClose);
 };
 
+// Ф для закрытия модального окна изменения данных профиля
+
 function closeEditPopup() {
   closePopup(popupProfile);
   removeErrors(popupProfile, parameters);
   document.removeEventListener('keyup', handleEscClose);
 }
 
-// addPopup
+// Ф для открытия модального окна добавления места
 
 function openAddPopup() {
   openPopup(popupAdd);
@@ -59,13 +62,15 @@ function openAddPopup() {
   document.addEventListener('keyup', handleEscClose);
 }
 
+// Ф для закрытия модального окна добавления места
+
 function closeAddPopup() {
   closePopup(popupAdd);
   removeErrors(popupAdd, parameters);
   document.removeEventListener('keyup', handleEscClose);
 }
 
-// editFormSubmit
+// Ф для изменения данных профиля
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
@@ -74,7 +79,7 @@ function editFormSubmitHandler (event) {
   closePopup(popupProfile);
 }
 
-// addFormSubmit
+// Ф для добавления нового места (карточки)
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
@@ -82,7 +87,7 @@ function addFormSubmitHandler (event) {
   closePopup(popupAdd);
 }
 
-// closeImagePopup
+// Ф для закрытия превью
 
 function closeImagePopup() {
   closePopup(popupImage);

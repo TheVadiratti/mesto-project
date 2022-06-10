@@ -1,57 +1,76 @@
-import { removeErrors, parameters, enableValidation } from './validation.js';
-import { pageContent, createCard } from './cards.js';
+import {
+  profileName,
+  profileDescription,
+  popupProfile,
+  popupAdd,
+  popupImage,
+  inputEditName,
+  inputEditDescription,
+  inputAddName,
+  inputAddLink
+} from './utilis/constants';
 
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupAdd = document.querySelector('.popup_type_add-image');
-const popupImage = document.querySelector('.popup_type_image');
-const inputEditName = document.querySelector('.popup__input_type_edit-name');
-const inputEditDescription = document.querySelector('.popup__input_type_edit-description');
-const inputAddName = document.querySelector('.popup__input_type_add-name');
-const inputAddLink = document.querySelector('.popup__input_type_add-link');
+import {
+  openPopup,
+  closePopup
+} from './utilis/utilis';
 
-// Ф для открытия модального окна
+import {
+  removeErrors,
+  parameters,
+  enableValidation
+} from './validation.js';
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+import {
+  pageContent
+} from './utilis/constants';
+
+// Ф для закрытия попапа при нажатии на Esc
+
+function handleEscClose(event) {
+  const popupActive = document.querySelector('.popup_opened');
+
+  if(event.key === 'Escape') {
+    closePopup(popupActive);
+  }
 }
 
-// Ф для закрытия модального окна
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-// editPopup
+// Ф для открытия модального окна изменения данных профиля
 
 function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
   enableValidation(parameters);
+  document.addEventListener('keyup', handleEscClose);
 };
+
+// Ф для закрытия модального окна изменения данных профиля
 
 function closeEditPopup() {
   closePopup(popupProfile);
   removeErrors(popupProfile, parameters);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
-// addPopup
+// Ф для открытия модального окна добавления места
 
 function openAddPopup() {
   openPopup(popupAdd);
-  inputAddName.value = '';
-  inputAddLink.value = '';
+  popupAdd.querySelector('.popup__form').reset();
   enableValidation(parameters);
+  document.addEventListener('keyup', handleEscClose);
 }
+
+// Ф для закрытия модального окна добавления места
 
 function closeAddPopup() {
   closePopup(popupAdd);
   removeErrors(popupAdd, parameters);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
-// editFormSubmit
+// Ф для изменения данных профиля
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
@@ -60,7 +79,7 @@ function editFormSubmitHandler (event) {
   closePopup(popupProfile);
 }
 
-// addFormSubmit
+// Ф для добавления нового места (карточки)
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
@@ -68,27 +87,11 @@ function addFormSubmitHandler (event) {
   closePopup(popupAdd);
 }
 
-// openImagePopup
-
-let contentImageURL;
-
-function openImagePopup(card) {
-  const targetImage = card.querySelector('.content__image');
-  targetImage.addEventListener('click', event => {
-    if (event.target.classList.contains('content__image')) {
-      contentImageURL = event.target.style.backgroundImage.slice(4, -1).replace(/"/g, "");
-      popupImage.querySelector('.popup__image').setAttribute('src', `${contentImageURL}`);
-      popupImage.querySelector('.popup__image').setAttribute('alt', `${event.target.nextElementSibling.firstElementChild.textContent}`);
-      popupImage.querySelector('.popup__caption').textContent = event.target.nextElementSibling.firstElementChild.textContent;
-      openPopup(popupImage);
-    }
-  })
-}
-
-// closeImagePopup
+// Ф для закрытия превью
 
 function closeImagePopup() {
   closePopup(popupImage);
+  document.removeEventListener('keyup', handleEscClose);
 }
 
 export {
@@ -96,9 +99,8 @@ export {
   closeEditPopup,
   openAddPopup,
   closeAddPopup,
-  openImagePopup,
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  closePopup
+  handleEscClose
 };

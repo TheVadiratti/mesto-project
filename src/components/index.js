@@ -1,5 +1,19 @@
 import '../pages/index.css';
 
+import { initialCards } from './initialCards';
+
+import {
+  closeButtonProfile,
+  closeButtonAddImage,
+  closeButtonImage,
+  popupList,
+  editButton,
+  addButton,
+  editPopupForm,
+  addPopupForm,
+  pageContent
+} from './utilis/constants';
+
 import {
   openEditPopup,
   closeEditPopup,
@@ -8,31 +22,18 @@ import {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  closePopup
 } from './modal.js';
 
-import { addCards } from './cards.js';
+import {
+  createCard
+} from './utilis/utilis';
 
-const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
-const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
-const closeButtonImage = document.querySelector('.popup__close-button_type_image');
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const editPopupForm = document.querySelector('.popup__form_type_edit');
-const addPopupForm = document.querySelector('.popup__form_type_add-image');
+import {
+  closePopup
+} from './utilis/utilis';
+
 
 // МОДАЛЬНЫЕ ОКНА
-
-  // Edit
-
-editButton.addEventListener('click', openEditPopup);
-closeButtonProfile.addEventListener('click', closeEditPopup);
-
-  // Add
-
-addButton.addEventListener('click', openAddPopup);
-closeButtonAddImage.addEventListener('click', closeAddPopup);
 
   // Закрытие попапа по клику на оверлей
 
@@ -44,16 +45,17 @@ popupList.forEach(popup => {
   })
 })
 
-  // Закрытие попапа при нажатии на Esc
+  // СЛУШАТЕЛИ
 
-document.addEventListener('keyup', function(event) {
-  const popupActive = document.querySelector('.popup_opened');
-  if(popupActive !== null) {
-    if(event.key === 'Escape') {
-      closePopup(popupActive);
-    }
-  }
-})
+  // Edit
+
+editButton.addEventListener('click', openEditPopup);
+closeButtonProfile.addEventListener('click', closeEditPopup);
+
+  // Add
+
+addButton.addEventListener('click', openAddPopup);
+closeButtonAddImage.addEventListener('click', closeAddPopup);
 
   // editFormSubmit
 
@@ -70,5 +72,11 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 // КАРТОЧКИ
 
   // addCards
+
+function addCards() {
+  initialCards.forEach(card => {
+    pageContent.append(createCard(card.name, card.link));
+  })
+}
 
 addCards();

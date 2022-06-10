@@ -1,42 +1,65 @@
-import { initialCards } from './initialCards.js';
-import { openImagePopup } from './modal.js';
+import {
+  popupImage
+} from './utilis/constants';
 
-// addCards
+import {
+  openPopup
+} from './utilis/utilis';
 
-const arrayLength = initialCards.length;
-const cardTemplate = document.querySelector('.cardTemplate').content;
-const pageContent = document.querySelector('.content');
+import {
+  handleEscClose
+} from './modal';
 
-// createCard !!!
+// Ф для добавления слушателя модальго окна с превью
 
-function createCard(name, link) {
-  const cardCopy = cardTemplate.querySelector('.content__card').cloneNode(true);
-  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
-  cardCopy.querySelector('.content__card-heading').textContent = name;
-  const addedButton = cardCopy.querySelector('.content__like-button');
-  addedButton.addEventListener('click', event => {
+function openImagePopup(card, name, link) {
+  card.addEventListener('click', event => {
+
+    // проверка, что нажата не корзинка
+    if (event.target.classList.contains('content__image')) {
+
+      /**
+       * 1) Добавляется фото;
+       * 2) Добавляется содержимое атрибута alt;
+       * 3) Добавляется подпись к фото.
+       */
+      popupImage.querySelector('.popup__image').setAttribute('src', `${link}`);
+      popupImage.querySelector('.popup__image').setAttribute('alt', `${name}`);
+      popupImage.querySelector('.popup__caption').textContent = name;
+
+      // Открытие модального окна с фото
+      openPopup(popupImage);
+      
+      // Добавляется слушатель для закрытия по Esc
+      document.addEventListener('keyup', handleEscClose);
+    }
+  })
+}
+
+// Ф для установки слушателя лайка
+
+function setLikeListener(card) {
+  const likeButton = card.querySelector('.content__like-button');
+
+  likeButton.addEventListener('click', event => {
     event.target.classList.toggle('content__like-button_active');
   })
-  removeCard(cardCopy);
-  openImagePopup(cardCopy);
-  return cardCopy;
 }
 
-  // addCards
 
-function addCards() {
-  for (let i = 0; i < arrayLength; i++) {
-    pageContent.append(createCard(initialCards[i].name, initialCards[i].link));
-  }
+
+// Ф для установки слушателя корзинки удаления
+
+function removeCard(card) {
+  const removeButton = card.querySelector('.content__remove-button');
+  
+  removeButton.addEventListener('click', event => {
+    event.target.closest('.content__card').remove();
+  })
 }
 
-  // removeCard
-
-  function removeCard(card) {
-    const removeButton = card.querySelector('.content__remove-button');
-    removeButton.addEventListener('click', event => {
-      event.target.closest('.content__card').remove();
-    })
-  }  
-
-export { addCards, pageContent, createCard };
+export {
+  openImagePopup,
+  setLikeListener,
+  removeCard
+};

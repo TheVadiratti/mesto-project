@@ -42,7 +42,6 @@ function openEditPopup() {
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
   enableValidation(parameters);
-  document.addEventListener('keyup', handleEscClose);
 };
 
 // Ф для закрытия модального окна изменения данных профиля
@@ -50,7 +49,6 @@ function openEditPopup() {
 function closeEditPopup() {
   closePopup(popupProfile);
   removeErrors(popupProfile, parameters);
-  document.removeEventListener('keyup', handleEscClose);
 }
 
 // Ф для открытия модального окна добавления места
@@ -59,7 +57,6 @@ function openAddPopup() {
   openPopup(popupAdd);
   popupAdd.querySelector('.popup__form').reset();
   enableValidation(parameters);
-  document.addEventListener('keyup', handleEscClose);
 }
 
 // Ф для закрытия модального окна добавления места
@@ -67,7 +64,6 @@ function openAddPopup() {
 function closeAddPopup() {
   closePopup(popupAdd);
   removeErrors(popupAdd, parameters);
-  document.removeEventListener('keyup', handleEscClose);
 }
 
 // Ф для изменения данных профиля
@@ -91,7 +87,6 @@ function addFormSubmitHandler (event) {
 
 function closeImagePopup() {
   closePopup(popupImage);
-  document.removeEventListener('keyup', handleEscClose);
 }
 
 export {

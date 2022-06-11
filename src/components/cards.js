@@ -6,10 +6,6 @@ import {
   openPopup
 } from './utilis/utilis';
 
-import {
-  handleEscClose
-} from './modal';
-
 // Ф для добавления слушателя модальго окна с превью
 
 function openImagePopup(card, name, link) {
@@ -29,9 +25,6 @@ function openImagePopup(card, name, link) {
 
       // Открытие модального окна с фото
       openPopup(popupImage);
-      
-      // Добавляется слушатель для закрытия по Esc
-      document.addEventListener('keyup', handleEscClose);
     }
   })
 }

@@ -3,6 +3,10 @@ import {
 } from './constants';
 
 import {
+  handleEscClose
+} from '../modal';
+
+import {
   openImagePopup,
   setLikeListener,
   removeCard
@@ -12,12 +16,14 @@ import {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keyup', handleEscClose);
 }
 
 // Ф для закрытия модального окна
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', handleEscClose);
 }
 
 // Ф для получения копии из шаблона

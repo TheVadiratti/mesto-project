@@ -26,6 +26,7 @@ import {
   parameters,
   enableValidation
 } from './validation.js';
+import { data } from 'autoprefixer';
 
 // Ф для закрытия попапа при нажатии на Esc
 
@@ -75,11 +76,18 @@ function editFormSubmitHandler (event) {
   changeProfile(inputEditName.value, inputEditDescription.value)
   
   .then(res => {
-    console.log(res.ok);
+    if(res.ok) {
+      return res.json();
+    }
+  })
+  .then(data => {
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+  })
+  .catch(err => {
+    console.log(err);
   })
 
-  profileName.textContent = inputEditName.value;
-  profileDescription.textContent = inputEditDescription.value;
   closePopup(popupProfile);
 }
 

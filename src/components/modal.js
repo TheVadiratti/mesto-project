@@ -79,6 +79,7 @@ function editFormSubmitHandler (event) {
     if(res.ok) {
       return res.json();
     }
+    return Promise.reject(`Ошибка: ${res.status}`);
   })
   .then(data => {
     profileName.textContent = data.name;

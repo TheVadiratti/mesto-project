@@ -33,8 +33,20 @@ function changeProfile(name, description) {
   });
 }
 
+function addCard(name, link) {
+  return fetch(`${config.baseUrl}/cards`, {
+    method: 'POST',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: name,
+      link: link
+    })
+  });
+}
+
 export {
   getProfileData,
   getCards,
-  changeProfile
+  changeProfile,
+  addCard
 }

@@ -18,6 +18,7 @@ import {
 } from './utilis/utilis';
 
 import {
+  addCard,
   changeProfile
 } from './api';
 
@@ -26,7 +27,6 @@ import {
   parameters,
   enableValidation
 } from './validation.js';
-import { data } from 'autoprefixer';
 
 // Ф для закрытия попапа при нажатии на Esc
 
@@ -96,7 +96,21 @@ function editFormSubmitHandler (event) {
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
-  pageContent.prepend(createCard(inputAddName.value, inputAddLink.value));
+  addCard(inputAddName.value, inputAddLink.value)
+
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    pageContent.prepend(createCard(data.name, data.link));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
   closePopup(popupAdd);
 }
 

@@ -9,7 +9,8 @@ import {
 } from './utilis/utilis';
 
 import {
-  getCards
+  getCards,
+  deleteCard
 } from './api';
 
 // Ф для добавления слушателя модальго окна с превью
@@ -53,11 +54,25 @@ function removeCard(card) {
   const removeButton = card.querySelector('.content__remove-button');
   
   removeButton.addEventListener('click', event => {
+    deleteCard(event.target.closest('.content__card').getAttribute('id'))
+    .catch(err => {
+      console.log(err);
+    });
     event.target.closest('.content__card').remove();
   })
 }
 
-// getCards
+// Ф для проверки на свою карточку
+
+function isMyCard(card) {
+  console.log(card);
+  if(card.owner._id === 'a9497c41abc43b7e36cc01aa') {
+    return true;
+  }
+  return false;
+}
+
+// Ф для получения карточек с сервера
 
 getCards()
 
@@ -69,7 +84,14 @@ getCards()
 })
 .then(data => {
   for(let i = 0; i < data.length; i++) {
-    pageContent.append(createCard(data[i].name, data[i].link, data[i].likes.length));
+    pageContent.append(createCard(
+      // параметры
+      data[i].name,
+      data[i].link,
+      data[i].likes.length,
+      isMyCard(data[i]),
+      data[i]._id
+      ));
   }
 })
 .catch(err => {

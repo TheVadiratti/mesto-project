@@ -44,9 +44,19 @@ function addCard(name, link) {
   });
 }
 
+function deleteCard(id) {
+  return fetch(`${config.baseUrl}/cards/${id}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: config.headers.authorization
+    }
+  });
+}
+
 export {
   getProfileData,
   getCards,
   changeProfile,
-  addCard
+  addCard,
+  deleteCard
 }

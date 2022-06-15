@@ -35,7 +35,7 @@ function getTemplate(template) {
 
 // Ф для создания карточки
 
-function createCard(name, link, likes) {
+function createCard(name, link, likes, buttonStatus, id) {
 
   // Получает шаблон
   const cardCopy = getTemplate(cardTemplate);
@@ -51,8 +51,12 @@ function createCard(name, link, likes) {
    * 3) Включается слушатель превью.
   */
   setLikeListener(cardCopy);
-  removeCard(cardCopy);
   openImagePopup(cardCopy, name, link);
+  if(buttonStatus) {
+    cardCopy.querySelector('.content__remove-button').classList.add('content__remove-button_active');
+    cardCopy.setAttribute('id', id);
+    removeCard(cardCopy);
+  }
 
   // Возвращает готовую карточку
   return cardCopy;

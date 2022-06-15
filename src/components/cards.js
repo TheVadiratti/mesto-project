@@ -69,7 +69,7 @@ getCards()
 })
 .then(data => {
   for(let i = 0; i < data.length; i++) {
-    pageContent.append(createCard(data[i].name, data[i].link));
+    pageContent.append(createCard(data[i].name, data[i].link, data[i].likes.length));
   }
 })
 .catch(err => {

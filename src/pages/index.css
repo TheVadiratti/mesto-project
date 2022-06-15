@@ -29,7 +29,9 @@
 @import url(../blocks/content/__image/content__image.css);
 @import url(../blocks/content/__container/content__container.css);
 @import url(../blocks/content/__card-heading/content__card-heading.css);
+@import url(../blocks/content/__like-area/content__like-area.css);
 @import url(../blocks/content/__like-button/content__like-button.css);
+@import url(../blocks/content/__quantity/content__quantity.css);
 @import url(../blocks/content/__remove-button/content__remove-button.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/__window/popup__window.css);

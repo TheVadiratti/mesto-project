@@ -35,7 +35,7 @@ function getTemplate(template) {
 
 // Ф для создания карточки
 
-function createCard(name, link) {
+function createCard(name, link, likes) {
 
   // Получает шаблон
   const cardCopy = getTemplate(cardTemplate);
@@ -43,6 +43,7 @@ function createCard(name, link) {
   // Вставляется фото и название
   cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
   cardCopy.querySelector('.content__card-heading').textContent = name;
+  cardCopy.querySelector('.content__quantity').textContent = likes;
 
   /**
    * 1) Включается слушатель лайка;

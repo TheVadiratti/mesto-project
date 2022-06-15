@@ -62,13 +62,19 @@ function removeCard(card) {
 getCards()
 
 .then(res => {
-  return res.json();
+  if(res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
 })
 .then(data => {
   console.log(data);
   for(let i = 0; i < data.length; i++) {
     pageContent.append(createCard(data[i].name, data[i].link));
   }
+})
+.catch(err => {
+  console.log(err);
 })
 
 export {

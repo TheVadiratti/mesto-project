@@ -22,10 +22,20 @@ export {
   pageContent
 }
 
-// for modal.js ----------------------------------------------------------------------------
+// for profile.js
 
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
+const profileAvatar = document.querySelector('.profile__avatar');
+
+export {
+  profileName,
+  profileDescription,
+  profileAvatar
+}
+
+// for modal.js ----------------------------------------------------------------------------
+
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAdd = document.querySelector('.popup_type_add-image');
 const popupImage = document.querySelector('.popup_type_image');
@@ -35,8 +45,6 @@ const inputAddName = document.querySelector('.popup__input_type_add-name');
 const inputAddLink = document.querySelector('.popup__input_type_add-link');
 
 export {
-  profileName,
-  profileDescription,
   popupProfile,
   popupAdd,
   popupImage,

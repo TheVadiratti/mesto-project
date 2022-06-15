@@ -15,6 +15,10 @@ import {
 } from './utilis/constants';
 
 import {
+  getProfileData
+} from './profile';
+
+import {
   openEditPopup,
   closeEditPopup,
   openAddPopup,

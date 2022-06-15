@@ -1,10 +1,16 @@
 import {
+  pageContent,
   popupImage
 } from './utilis/constants';
 
 import {
-  openPopup
+  openPopup,
+  createCard
 } from './utilis/utilis';
+
+import {
+  getCards
+} from './api';
 
 // Ф для добавления слушателя модальго окна с превью
 
@@ -50,6 +56,20 @@ function removeCard(card) {
     event.target.closest('.content__card').remove();
   })
 }
+
+// getCards
+
+getCards()
+
+.then(res => {
+  return res.json();
+})
+.then(data => {
+  console.log(data);
+  for(let i = 0; i < data.length; i++) {
+    pageContent.append(createCard(data[i].name, data[i].link));
+  }
+})
 
 export {
   openImagePopup,

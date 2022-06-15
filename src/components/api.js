@@ -14,6 +14,27 @@ function getProfileData() {
   });
 }
 
+function getCards() {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: {
+      authorization: config.headers.authorization
+    }
+  });
+}
+
+function changeProfile(name, description) {
+  return fetch(`${config.baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: name,
+      about: description
+    })
+  });
+}
+
 export {
-  getProfileData
+  getProfileData,
+  getCards,
+  changeProfile
 }

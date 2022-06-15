@@ -1,7 +1,5 @@
 import '../pages/index.css';
 
-import { initialCards } from './initialCards';
-
 import {
   closeButtonProfile,
   closeButtonAddImage,
@@ -11,7 +9,6 @@ import {
   addButton,
   editPopupForm,
   addPopupForm,
-  pageContent
 } from './utilis/constants';
 
 import {
@@ -27,10 +24,6 @@ import {
   editFormSubmitHandler,
   addFormSubmitHandler,
 } from './modal.js';
-
-import {
-  createCard
-} from './utilis/utilis';
 
 import {
   closePopup
@@ -72,15 +65,3 @@ addPopupForm.addEventListener('submit', addFormSubmitHandler);
   // closeImagePopup
 
 closeButtonImage.addEventListener('click', closeImagePopup);
-
-// КАРТОЧКИ
-
-  // addCards
-
-function addCards() {
-  initialCards.forEach(card => {
-    pageContent.append(createCard(card.name, card.link));
-  })
-}
-
-addCards();

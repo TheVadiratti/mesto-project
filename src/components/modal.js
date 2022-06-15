@@ -7,7 +7,8 @@ import {
   inputEditName,
   inputEditDescription,
   inputAddName,
-  inputAddLink
+  inputAddLink,
+  pageContent
 } from './utilis/constants';
 
 import {
@@ -17,14 +18,14 @@ import {
 } from './utilis/utilis';
 
 import {
+  changeProfile
+} from './api';
+
+import {
   removeErrors,
   parameters,
   enableValidation
 } from './validation.js';
-
-import {
-  pageContent
-} from './utilis/constants';
 
 // Ф для закрытия попапа при нажатии на Esc
 
@@ -71,6 +72,12 @@ function closeAddPopup() {
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
+  changeProfile(inputEditName.value, inputEditDescription.value)
+  
+  .then(res => {
+    console.log(res.ok);
+  })
+
   profileName.textContent = inputEditName.value;
   profileDescription.textContent = inputEditDescription.value;
   closePopup(popupProfile);

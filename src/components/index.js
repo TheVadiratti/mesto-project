@@ -10,7 +10,8 @@ import {
   addButton,
   editPopupForm,
   addPopupForm,
-  avatarButton
+  avatarButton,
+  avatarPopupForm
 } from './utilis/constants';
 
 import {
@@ -26,7 +27,8 @@ import {
   editFormSubmitHandler,
   addFormSubmitHandler,
   openAvatarPopup,
-  closeAvatarPopup
+  closeAvatarPopup,
+  avatarFormSubmitHandler
 } from './modal.js';
 
 import {
@@ -76,6 +78,10 @@ closeButtonImage.addEventListener('click', closeImagePopup);
 
 avatarButton.addEventListener('click', openAvatarPopup);
 
-// openAvatarPopup
+  // openAvatarPopup
 
 closeButtonAvatar.addEventListener('click', closeAvatarPopup);
+
+  // avatarFormSubmit
+
+avatarPopupForm.addEventListener('submit', avatarFormSubmitHandler);

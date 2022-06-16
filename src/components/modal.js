@@ -9,7 +9,10 @@ import {
   inputAddName,
   inputAddLink,
   pageContent,
-  popupAvatar
+  popupAvatar,
+  inputAvatarLink,
+  profileAvatar,
+  avatarPopupForm
 } from './utilis/constants';
 
 import {
@@ -20,7 +23,8 @@ import {
 
 import {
   addCard,
-  changeProfile
+  changeProfile,
+  setAvatar
 } from './api';
 
 import {
@@ -150,6 +154,28 @@ function closeAvatarPopup() {
   popupAvatar.querySelector('.popup__form').reset();
 }
 
+// Ф для изменения автарки
+
+function avatarFormSubmitHandler (event) {
+  event.preventDefault();
+  setAvatar(inputAvatarLink.value)
+  
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    profileAvatar.setAttribute('src', data.avatar);
+    closePopup(popupAvatar);
+    avatarPopupForm.reset();
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
 export {
   openEditPopup,
   closeEditPopup,
@@ -160,5 +186,6 @@ export {
   addFormSubmitHandler,
   handleEscClose,
   openAvatarPopup,
-  closeAvatarPopup
+  closeAvatarPopup,
+  avatarFormSubmitHandler
 };

@@ -71,6 +71,16 @@ function deleteLike(id) {
   });
 }
 
+function setAvatar(link) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: link
+    })
+  });
+}
+
 export {
   getProfileData,
   getCards,
@@ -78,5 +88,6 @@ export {
   addCard,
   deleteCard,
   putLike,
-  deleteLike
+  deleteLike,
+  setAvatar
 }

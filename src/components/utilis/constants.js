@@ -11,6 +11,7 @@ const editPopupForm = document.querySelector('.popup__form_type_edit');
 const addPopupForm = document.querySelector('.popup__form_type_add-image');
 const pageContent = document.querySelector('.content');
 const avatarButton = document.querySelector('.profile__avatar-btn');
+const avatarPopupForm = document.querySelector('.popup__form_type_avatar');
 
 export {
   closeButtonProfile,
@@ -23,7 +24,8 @@ export {
   editPopupForm,
   addPopupForm,
   pageContent,
-  avatarButton
+  avatarButton,
+  avatarPopupForm
 }
 
 // for profile.js
@@ -47,7 +49,8 @@ const inputEditName = document.querySelector('.popup__input_type_edit-name');
 const inputEditDescription = document.querySelector('.popup__input_type_edit-description');
 const inputAddName = document.querySelector('.popup__input_type_add-name');
 const inputAddLink = document.querySelector('.popup__input_type_add-link');
-const popupAvatar = document.querySelector('.popup_type_avatar')
+const popupAvatar = document.querySelector('.popup_type_avatar');
+const inputAvatarLink = document.querySelector('.popup__input_type_avatar');
 
 export {
   popupProfile,
@@ -57,7 +60,8 @@ export {
   inputEditDescription,
   inputAddName,
   inputAddLink,
-  popupAvatar
+  popupAvatar,
+  inputAvatarLink
 }
 
 // for cards.js ----------------------------------------------------------------------------

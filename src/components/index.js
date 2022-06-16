@@ -1,18 +1,22 @@
 import '../pages/index.css';
 
-import { initialCards } from './initialCards';
-
 import {
   closeButtonProfile,
   closeButtonAddImage,
   closeButtonImage,
+  closeButtonAvatar,
   popupList,
   editButton,
   addButton,
   editPopupForm,
   addPopupForm,
-  pageContent
+  avatarButton,
+  avatarPopupForm
 } from './utilis/constants';
+
+import {
+  getProfileData
+} from './profile';
 
 import {
   openEditPopup,
@@ -22,30 +26,31 @@ import {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
+  openAvatarPopup,
+  closeAvatarPopup,
+  avatarFormSubmitHandler
 } from './modal.js';
-
-import {
-  createCard
-} from './utilis/utilis';
 
 import {
   closePopup
 } from './utilis/utilis';
 
-
-// МОДАЛЬНЫЕ ОКНА
+import {
+  removeErrors,
+  parameters
+} from './validation';
 
   // Закрытие попапа по клику на оверлей
 
 popupList.forEach(popup => {
   popup.addEventListener('click', function(event) {
     if(event.target === popup) {
+      removeErrors(popup, parameters);
+      popup.querySelector('.popup__form').reset();
       closePopup(popup);
     }
   })
 })
-
-  // СЛУШАТЕЛИ
 
   // Edit
 
@@ -68,15 +73,15 @@ addPopupForm.addEventListener('submit', addFormSubmitHandler);
   // closeImagePopup
 
 closeButtonImage.addEventListener('click', closeImagePopup);
+  
+  // openAvatarPopup
 
-// КАРТОЧКИ
+avatarButton.addEventListener('click', openAvatarPopup);
 
-  // addCards
+  // openAvatarPopup
 
-function addCards() {
-  initialCards.forEach(card => {
-    pageContent.append(createCard(card.name, card.link));
-  })
-}
+closeButtonAvatar.addEventListener('click', closeAvatarPopup);
 
-addCards();
+  // avatarFormSubmit
+
+avatarPopupForm.addEventListener('submit', avatarFormSubmitHandler);

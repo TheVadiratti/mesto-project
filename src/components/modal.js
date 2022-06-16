@@ -7,24 +7,37 @@ import {
   inputEditName,
   inputEditDescription,
   inputAddName,
-  inputAddLink
+  inputAddLink,
+  pageContent,
+  popupAvatar,
+  inputAvatarLink,
+  profileAvatar,
+  avatarPopupForm
 } from './utilis/constants';
 
 import {
   openPopup,
   closePopup,
-  createCard
+  createCard,
+  renderLoading
 } from './utilis/utilis';
+
+import {
+  addCard,
+  changeProfile,
+  setAvatar
+} from './api';
+
+import {
+  isMyCard,
+  hasMyLike
+} from './cards'
 
 import {
   removeErrors,
   parameters,
   enableValidation
 } from './validation.js';
-
-import {
-  pageContent
-} from './utilis/constants';
 
 // Ф для закрытия попапа при нажатии на Esc
 
@@ -33,6 +46,8 @@ function handleEscClose(event) {
 
   if(event.key === 'Escape') {
     closePopup(popupActive);
+    removeErrors(popupActive, parameters);
+    popupActive.querySelector('.popup__form').reset();
   }
 }
 
@@ -56,7 +71,6 @@ function closeEditPopup() {
 
 function openAddPopup() {
   openPopup(popupAdd);
-  popupAdd.querySelector('.popup__form').reset();
   enableValidation(parameters);
 }
 
@@ -64,6 +78,7 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
+  popupAdd.querySelector('.popup__form').reset();
   removeErrors(popupAdd, parameters);
 }
 
@@ -71,8 +86,27 @@ function closeAddPopup() {
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
-  profileName.textContent = inputEditName.value;
-  profileDescription.textContent = inputEditDescription.value;
+  changeProfile(inputEditName.value, inputEditDescription.value)
+  
+  .finally(() => {
+    renderLoading(popupProfile, false);
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+    renderLoading(popupProfile, true);
+  })
+  .catch(err => {
+    console.log(err);
+    renderLoading(popupProfile, true);
+  })
+
   closePopup(popupProfile);
 }
 
@@ -80,7 +114,33 @@ function editFormSubmitHandler (event) {
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
-  pageContent.prepend(createCard(inputAddName.value, inputAddLink.value));
+  addCard(inputAddName.value, inputAddLink.value)
+
+  .finally(() => {
+    renderLoading(popupAdd, false);
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    pageContent.prepend(createCard(
+      data.name,
+      data.link,
+      0,
+      isMyCard(data),
+      hasMyLike(data),
+      data._id
+      ));
+      renderLoading(popupAdd, true);
+  })
+  .catch(err => {
+    console.log(err);
+    renderLoading(popupAdd, true);
+  })
+
   closePopup(popupAdd);
 }
 
@@ -88,6 +148,48 @@ function addFormSubmitHandler (event) {
 
 function closeImagePopup() {
   closePopup(popupImage);
+}
+
+// Ф для открытия модального окна изменения аватара
+
+function openAvatarPopup() {
+  openPopup(popupAvatar);
+  enableValidation(parameters);
+}
+
+// Ф для закрытия модального окна изменения аватара
+
+function closeAvatarPopup() {
+  closePopup(popupAvatar);
+  removeErrors(popupAvatar, parameters);
+  popupAvatar.querySelector('.popup__form').reset();
+}
+
+// Ф для изменения автарки
+
+function avatarFormSubmitHandler (event) {
+  event.preventDefault();
+  setAvatar(inputAvatarLink.value)
+
+  .finally(() => {
+    renderLoading(popupAvatar, false);
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    profileAvatar.setAttribute('src', data.avatar);
+    closePopup(popupAvatar);
+    avatarPopupForm.reset();
+    renderLoading(popupAvatar, true);
+  })
+  .catch(err => {
+    console.log(err);
+    renderLoading(popupAvatar, true);
+  })
 }
 
 export {
@@ -98,5 +200,8 @@ export {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  handleEscClose
+  handleEscClose,
+  openAvatarPopup,
+  closeAvatarPopup,
+  avatarFormSubmitHandler
 };

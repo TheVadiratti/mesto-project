@@ -1,3 +1,10 @@
 .profile__avatar-area {
+  width: fit-content;
   position: relative;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__avatar-area {
+    margin: 0 auto 0;
+  }
 }

@@ -23,6 +23,11 @@ import {
 } from './api';
 
 import {
+  isMyCard,
+  hasMyLike
+} from './cards'
+
+import {
   removeErrors,
   parameters,
   enableValidation
@@ -106,12 +111,13 @@ function addFormSubmitHandler (event) {
   })
   .then(data => {
     pageContent.prepend(createCard(
-      data[i].name,
-      data[i].link,
+      data.name,
+      data.link,
       0,
-      isMyCard(data[i]),
-      hasMyLike(data[i]),
-      data[i]._id));
+      isMyCard(data),
+      hasMyLike(data),
+      data._id
+      ));
   })
   .catch(err => {
     console.log(err);

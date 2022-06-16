@@ -165,4 +165,6 @@ export {
   removeCard,
   setLike,
   removeLike,
+  isMyCard,
+  hasMyLike
 };

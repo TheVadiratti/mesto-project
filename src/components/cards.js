@@ -62,6 +62,21 @@ function removeCard(card) {
   })
 }
 
+// Слушатель постановки/удаления лайка
+
+function setLikeListener(card) {
+  const likeButton = card.querySelector('.content__like-button');
+  
+  likeButton.addEventListener('click', event => {
+    if(likeButton.classList.contains('content__like-button_active')) {
+      removeLike(event);
+    }
+      else {
+        setLike(event);
+      }
+  })
+}
+
 // Ф для проверки на свою карточку
 
 function isMyCard(card) {
@@ -99,7 +114,6 @@ getCards()
 
 export {
   openImagePopup,
-  setLike,
-  removeLike,
+  setLikeListener,
   removeCard
 };

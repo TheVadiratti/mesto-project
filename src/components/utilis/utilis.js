@@ -1,8 +1,4 @@
 import {
-  setLikeListener
-} from '../index';
-
-import {
   cardTemplate,
 } from './constants';
 
@@ -12,7 +8,8 @@ import {
 
 import {
   openImagePopup,
-  removeCard
+  removeCard,
+  setLikeListener
 } from '../cards';
 
 // Ф для открытия модального окна

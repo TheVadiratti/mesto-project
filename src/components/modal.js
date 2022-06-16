@@ -18,7 +18,8 @@ import {
 import {
   openPopup,
   closePopup,
-  createCard
+  createCard,
+  renderLoading
 } from './utilis/utilis';
 
 import {
@@ -87,6 +88,9 @@ function editFormSubmitHandler (event) {
   event.preventDefault();
   changeProfile(inputEditName.value, inputEditDescription.value)
   
+  .finally(() => {
+    renderLoading(popupProfile, false);
+  })
   .then(res => {
     if(res.ok) {
       return res.json();
@@ -96,9 +100,11 @@ function editFormSubmitHandler (event) {
   .then(data => {
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
+    renderLoading(popupProfile, true);
   })
   .catch(err => {
     console.log(err);
+    renderLoading(popupProfile, true);
   })
 
   closePopup(popupProfile);
@@ -110,6 +116,9 @@ function addFormSubmitHandler (event) {
   event.preventDefault();
   addCard(inputAddName.value, inputAddLink.value)
 
+  .finally(() => {
+    renderLoading(popupAdd, false);
+  })
   .then(res => {
     if(res.ok) {
       return res.json();
@@ -125,9 +134,11 @@ function addFormSubmitHandler (event) {
       hasMyLike(data),
       data._id
       ));
+      renderLoading(popupAdd, true);
   })
   .catch(err => {
     console.log(err);
+    renderLoading(popupAdd, true);
   })
 
   closePopup(popupAdd);
@@ -159,7 +170,10 @@ function closeAvatarPopup() {
 function avatarFormSubmitHandler (event) {
   event.preventDefault();
   setAvatar(inputAvatarLink.value)
-  
+
+  .finally(() => {
+    renderLoading(popupAvatar, false);
+  })
   .then(res => {
     if(res.ok) {
       return res.json();
@@ -170,9 +184,11 @@ function avatarFormSubmitHandler (event) {
     profileAvatar.setAttribute('src', data.avatar);
     closePopup(popupAvatar);
     avatarPopupForm.reset();
+    renderLoading(popupAvatar, true);
   })
   .catch(err => {
     console.log(err);
+    renderLoading(popupAvatar, true);
   })
 }
 

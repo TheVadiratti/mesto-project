@@ -35,7 +35,7 @@ function getTemplate(template) {
   return copy;
 }
 
-// Ф для создания карточки ----------------------------------------------------------------------------------------
+// Ф для создания карточки
 
 function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id) {
 
@@ -74,8 +74,21 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
   return cardCopy;
 }
 
+// Ф индикации загрузки
+
+function renderLoading(popup, isLoading) {
+  const btn = popup.querySelector('.popup__button');
+  if(isLoading) {
+    btn.textContent = 'Сохранить';
+  }
+  else {
+    btn.textContent = 'Сохранение...';
+  }
+}
+
 export {
   openPopup,
   closePopup,
-  createCard
+  createCard,
+  renderLoading
 }

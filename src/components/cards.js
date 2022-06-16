@@ -63,7 +63,7 @@ function removeCard(card) {
 }
 
 function toggleLike(event) {
-  if(likeButton.classList.contains('content__like-button_active')) {
+  if(event.target.classList.contains('content__like-button_active')) {
     removeLike(event);
   }
     else {

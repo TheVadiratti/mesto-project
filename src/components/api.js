@@ -53,10 +53,20 @@ function deleteCard(id) {
   });
 }
 
+function like(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: 'PUT',
+    headers: {
+      authorization: config.headers.authorization
+    }
+  });
+}
+
 export {
   getProfileData,
   getCards,
   changeProfile,
   addCard,
-  deleteCard
+  deleteCard,
+  like
 }

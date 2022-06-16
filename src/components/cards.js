@@ -62,19 +62,21 @@ function removeCard(card) {
   })
 }
 
+function toggleLike(event) {
+  if(likeButton.classList.contains('content__like-button_active')) {
+    removeLike(event);
+  }
+    else {
+      setLike(event);
+    }
+}
+
 // Слушатель постановки/удаления лайка
 
 function setLikeListener(card) {
   const likeButton = card.querySelector('.content__like-button');
   
-  likeButton.addEventListener('click', event => {
-    if(likeButton.classList.contains('content__like-button_active')) {
-      removeLike(event);
-    }
-      else {
-        setLike(event);
-      }
-  })
+  likeButton.addEventListener('click', toggleLike)
 }
 
 // Ф для проверки на свою карточку

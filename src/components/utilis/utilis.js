@@ -47,14 +47,14 @@ function createCard(name, link, likes, buttonStatus, id) {
 
   /**
    * 1) Включается слушатель лайка;
-   * 2) Включается кнопка удаления;
-   * 3) Включается слушатель превью.
+   * 2) Включается слушатель превью;
+   * 3) Добавляется идентификатор.
   */
   setLikeListener(cardCopy);
   openImagePopup(cardCopy, name, link);
+  cardCopy.setAttribute('id', id);
   if(buttonStatus) {
     cardCopy.querySelector('.content__remove-button').classList.add('content__remove-button_active');
-    cardCopy.setAttribute('id', id);
     removeCard(cardCopy);
   }
 

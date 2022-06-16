@@ -3,23 +3,27 @@
 const closeButtonProfile = document.querySelector('.popup__close-button_type_profile');
 const closeButtonAddImage = document.querySelector('.popup__close-button_type_add-image');
 const closeButtonImage = document.querySelector('.popup__close-button_type_image');
+const closeButtonAvatar = document.querySelector('.popup__close-button_type_avatar');
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const editPopupForm = document.querySelector('.popup__form_type_edit');
 const addPopupForm = document.querySelector('.popup__form_type_add-image');
 const pageContent = document.querySelector('.content');
+const avatarButton = document.querySelector('.profile__avatar-btn');
 
 export {
   closeButtonProfile,
   closeButtonAddImage,
   closeButtonImage,
+  closeButtonAvatar,
   popupList,
   editButton,
   addButton,
   editPopupForm,
   addPopupForm,
-  pageContent
+  pageContent,
+  avatarButton
 }
 
 // for profile.js
@@ -43,6 +47,7 @@ const inputEditName = document.querySelector('.popup__input_type_edit-name');
 const inputEditDescription = document.querySelector('.popup__input_type_edit-description');
 const inputAddName = document.querySelector('.popup__input_type_add-name');
 const inputAddLink = document.querySelector('.popup__input_type_add-link');
+const popupAvatar = document.querySelector('.popup_type_avatar')
 
 export {
   popupProfile,
@@ -51,7 +56,8 @@ export {
   inputEditName,
   inputEditDescription,
   inputAddName,
-  inputAddLink
+  inputAddLink,
+  popupAvatar
 }
 
 // for cards.js ----------------------------------------------------------------------------

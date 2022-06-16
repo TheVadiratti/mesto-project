@@ -8,7 +8,8 @@ import {
   inputEditDescription,
   inputAddName,
   inputAddLink,
-  pageContent
+  pageContent,
+  popupAvatar
 } from './utilis/constants';
 
 import {
@@ -40,6 +41,8 @@ function handleEscClose(event) {
 
   if(event.key === 'Escape') {
     closePopup(popupActive);
+    removeErrors(popupActive, parameters);
+    popupActive.querySelector('.popup__form').reset();
   }
 }
 
@@ -63,7 +66,6 @@ function closeEditPopup() {
 
 function openAddPopup() {
   openPopup(popupAdd);
-  popupAdd.querySelector('.popup__form').reset();
   enableValidation(parameters);
 }
 
@@ -71,6 +73,7 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
+  popupAdd.querySelector('.popup__form').reset();
   removeErrors(popupAdd, parameters);
 }
 
@@ -132,6 +135,21 @@ function closeImagePopup() {
   closePopup(popupImage);
 }
 
+// Ф для открытия модального окна изменения аватара
+
+function openAvatarPopup() {
+  openPopup(popupAvatar);
+  enableValidation(parameters);
+}
+
+// Ф для закрытия модального окна изменения аватара
+
+function closeAvatarPopup() {
+  closePopup(popupAvatar);
+  removeErrors(popupAvatar, parameters);
+  popupAvatar.querySelector('.popup__form').reset();
+}
+
 export {
   openEditPopup,
   closeEditPopup,
@@ -140,5 +158,7 @@ export {
   closeImagePopup,
   editFormSubmitHandler,
   addFormSubmitHandler,
-  handleEscClose
+  handleEscClose,
+  openAvatarPopup,
+  closeAvatarPopup
 };

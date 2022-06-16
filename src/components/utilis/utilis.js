@@ -9,7 +9,9 @@ import {
 import {
   openImagePopup,
   removeCard,
-  setLikeListener
+  setLikeListener,
+  setLike,
+  removeLike
 } from '../cards';
 
 // Ф для открытия модального окна
@@ -33,9 +35,9 @@ function getTemplate(template) {
   return copy;
 }
 
-// Ф для создания карточки
+// Ф для создания карточки ----------------------------------------------------------------------------------------
 
-function createCard(name, link, likes, buttonStatus, id) {
+function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id) {
 
   // Получает шаблон
   const cardCopy = getTemplate(cardTemplate);
@@ -53,10 +55,20 @@ function createCard(name, link, likes, buttonStatus, id) {
   setLikeListener(cardCopy);
   openImagePopup(cardCopy, name, link);
   cardCopy.setAttribute('id', id);
-  if(buttonStatus) {
+
+  // проверка на свою
+  if(removeButtonStatus) {
     cardCopy.querySelector('.content__remove-button').classList.add('content__remove-button_active');
     removeCard(cardCopy);
   }
+
+  // проверка лайка
+  if(likeButtonStatus) {
+    setLike(cardCopy.querySelector('.content__like-button'));
+  }
+    else {
+      removeLike(cardCopy.querySelector('.content__like-button'));
+    }
 
   // Возвращает готовую карточку
   return cardCopy;

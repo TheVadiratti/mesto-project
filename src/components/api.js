@@ -53,9 +53,18 @@ function deleteCard(id) {
   });
 }
 
-function like(id) {
+function putLike(id) {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
     method: 'PUT',
+    headers: {
+      authorization: config.headers.authorization
+    }
+  });
+}
+
+function deleteLike(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: 'DELETE',
     headers: {
       authorization: config.headers.authorization
     }
@@ -68,5 +77,6 @@ export {
   changeProfile,
   addCard,
   deleteCard,
-  like
+  putLike,
+  deleteLike
 }

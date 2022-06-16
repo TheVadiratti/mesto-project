@@ -105,7 +105,13 @@ function addFormSubmitHandler (event) {
     return Promise.reject(`Ошибка: ${res.status}`);
   })
   .then(data => {
-    pageContent.prepend(createCard(data.name, data.link, 0));
+    pageContent.prepend(createCard(
+      data[i].name,
+      data[i].link,
+      0,
+      isMyCard(data[i]),
+      hasMyLike(data[i]),
+      data[i]._id));
   })
   .catch(err => {
     console.log(err);

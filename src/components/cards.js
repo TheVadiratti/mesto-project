@@ -10,7 +10,9 @@ import {
 
 import {
   getCards,
-  deleteCard
+  deleteCard,
+  putLike,
+  deleteLike
 } from './api';
 
 // Ф для добавления слушателя модальго окна с превью
@@ -38,14 +40,14 @@ function openImagePopup(card, name, link) {
 
 // Ф постваить лайк
 
-function setLike(event) {
-  event.target.classList.add('content__like-button_active');
+function setLike(button) {
+  button.classList.add('content__like-button_active');
 }
 
 // Ф убрать лайк
 
-function removeLike(event) {
-  event.target.classList.remove('content__like-button_active');
+function removeLike(button) {
+  button.classList.remove('content__like-button_active');
 }
 
 // Ф для установки слушателя корзинки удаления
@@ -63,11 +65,43 @@ function removeCard(card) {
 }
 
 function toggleLike(event) {
+  const cardID = event.target.closest('.content__card').getAttribute('id');
+  console.log(cardID);
   if(event.target.classList.contains('content__like-button_active')) {
-    removeLike(event);
+
+    deleteLike(cardID)
+    
+      .then(res => {
+        if(res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then(data => {
+        event.target.nextElementSibling.textContent = data.likes.length;
+        removeLike(event.target);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
     else {
-      setLike(event);
+
+      putLike(cardID)
+    
+      .then(res => {
+        if(res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then(data => {
+        event.target.nextElementSibling.textContent = data.likes.length;
+        setLike(event.target);
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
 }
 
@@ -88,6 +122,15 @@ function isMyCard(card) {
   return false;
 }
 
+// Ф для проверки своего лайка на карточке
+
+function hasMyLike(card) {
+  const arrLikes = card.likes;
+  return arrLikes.some(obj => {
+    return obj._id === 'a9497c41abc43b7e36cc01aa';
+  })
+}
+
 // Ф для получения карточек с сервера
 
 getCards()
@@ -99,6 +142,7 @@ getCards()
   return Promise.reject(`Ошибка: ${res.status}`);
 })
 .then(data => {
+  console.log(data);
   for(let i = 0; i < data.length; i++) {
     pageContent.append(createCard(
       // параметры
@@ -106,6 +150,7 @@ getCards()
       data[i].link,
       data[i].likes.length,
       isMyCard(data[i]),
+      hasMyLike(data[i]),
       data[i]._id
       ));
   }
@@ -117,5 +162,7 @@ getCards()
 export {
   openImagePopup,
   setLikeListener,
-  removeCard
+  removeCard,
+  setLike,
+  removeLike,
 };

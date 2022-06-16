@@ -1,4 +1,8 @@
 import {
+  setLikeListener
+} from '../index';
+
+import {
   cardTemplate,
 } from './constants';
 
@@ -8,7 +12,6 @@ import {
 
 import {
   openImagePopup,
-  setLikeListener,
   removeCard
 } from '../cards';
 

@@ -29,6 +29,11 @@ import {
   closePopup
 } from './utilis/utilis';
 
+import {
+  setLike,
+  removeLike
+} from './cards';
+
 
 // МОДАЛЬНЫЕ ОКНА
 
@@ -65,3 +70,22 @@ addPopupForm.addEventListener('submit', addFormSubmitHandler);
   // closeImagePopup
 
 closeButtonImage.addEventListener('click', closeImagePopup);
+
+  // Ф для установки слушателя лайка
+
+function setLikeListener(card) {
+  const likeButton = card.querySelector('.content__like-button');
+
+  likeButton.addEventListener('click', event => {
+    if(likeButton.classList.contains('content__like-button_active')) {
+      removeLike(event);
+    }
+      else {
+        setLike(event);
+      }
+  })
+}
+
+export {
+  setLikeListener
+}

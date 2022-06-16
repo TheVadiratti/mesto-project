@@ -36,17 +36,17 @@ function openImagePopup(card, name, link) {
   })
 }
 
-// Ф для установки слушателя лайка
+// Ф постваить лайк
 
-function setLikeListener(card) {
-  const likeButton = card.querySelector('.content__like-button');
-
-  likeButton.addEventListener('click', event => {
-    event.target.classList.toggle('content__like-button_active');
-  })
+function setLike(event) {
+  event.target.classList.add('content__like-button_active');
 }
 
+// Ф убрать лайк
 
+function removeLike(event) {
+  event.target.classList.remove('content__like-button_active');
+}
 
 // Ф для установки слушателя корзинки удаления
 
@@ -65,7 +65,6 @@ function removeCard(card) {
 // Ф для проверки на свою карточку
 
 function isMyCard(card) {
-  console.log(card);
   if(card.owner._id === 'a9497c41abc43b7e36cc01aa') {
     return true;
   }
@@ -100,6 +99,7 @@ getCards()
 
 export {
   openImagePopup,
-  setLikeListener,
+  setLike,
+  removeLike,
   removeCard
 };

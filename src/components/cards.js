@@ -66,7 +66,6 @@ function removeCard(card) {
 
 function toggleLike(event) {
   const cardID = event.target.closest('.content__card').getAttribute('id');
-  console.log(cardID);
   if(event.target.classList.contains('content__like-button_active')) {
 
     deleteLike(cardID)
@@ -142,7 +141,6 @@ getCards()
   return Promise.reject(`Ошибка: ${res.status}`);
 })
 .then(data => {
-  console.log(data);
   for(let i = 0; i < data.length; i++) {
     pageContent.append(createCard(
       // параметры

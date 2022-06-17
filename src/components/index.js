@@ -46,7 +46,6 @@ popupList.forEach(popup => {
   popup.addEventListener('click', function(event) {
     if(event.target === popup) {
       removeErrors(popup, parameters);
-      popup.querySelector('.popup__form').reset();
       closePopup(popup);
     }
   })

@@ -47,7 +47,6 @@ function handleEscClose(event) {
   if(event.key === 'Escape') {
     closePopup(popupActive);
     removeErrors(popupActive, parameters);
-    popupActive.querySelector('.popup__form').reset();
   }
 }
 

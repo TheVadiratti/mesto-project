@@ -82,20 +82,19 @@ function closeAddPopup() {
 
 function editFormSubmitHandler (event) {
   event.preventDefault();
+  renderLoading(popupProfile, false);
   changeProfile(inputEditName.value, inputEditDescription.value)
   .then(data => {
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
-    renderLoading(popupProfile, true);
   })
 
   .catch(err => {
     console.log(err);
-    renderLoading(popupProfile, true);
   })
 
   .finally(() => {
-    renderLoading(popupProfile, false);
+    renderLoading(popupProfile, true);
   })
 
   closePopup(popupProfile);
@@ -105,6 +104,7 @@ function editFormSubmitHandler (event) {
 
 function addFormSubmitHandler (event) {
   event.preventDefault();
+  renderLoading(popupAdd, false);
   addCard(inputAddName.value, inputAddLink.value)
 
   .then(data => {
@@ -116,16 +116,15 @@ function addFormSubmitHandler (event) {
       hasMyLike(data),
       data._id
       ));
-      renderLoading(popupAdd, true);
   })
 
   .catch(err => {
     console.log(err);
-    renderLoading(popupAdd, true);
+    
   })
 
   .finally(() => {
-    renderLoading(popupAdd, false);
+    renderLoading(popupAdd, true);
   })
 
   closePopup(popupAdd);
@@ -155,22 +154,21 @@ function closeAvatarPopup() {
 
 function avatarFormSubmitHandler (event) {
   event.preventDefault();
+  renderLoading(popupAvatar, false);
   setAvatar(inputAvatarLink.value)
 
   .then(data => {
     profileAvatar.setAttribute('src', data.avatar);
     closePopup(popupAvatar);
     avatarPopupForm.reset();
-    renderLoading(popupAvatar, true);
   })
   
   .catch(err => {
     console.log(err);
-    renderLoading(popupAvatar, true);
   })
 
   .finally(() => {
-    renderLoading(popupAvatar, false);
+    renderLoading(popupAvatar, true);
   })
 }
 

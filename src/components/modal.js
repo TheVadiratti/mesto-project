@@ -38,6 +38,7 @@ import {
 import {
   removeErrors,
   parameters,
+  resetButton
 } from './validation.js';
 
 // Ф для закрытия попапа при нажатии на Esc
@@ -118,8 +119,9 @@ function addFormSubmitHandler (event) {
       hasMyLike(data),
       data._id
       ));
-    closePopup(popupAdd);
     addPopupForm.reset();
+    resetButton();
+    closePopup(popupAdd);
   })
 
   .catch(err => {
@@ -161,8 +163,9 @@ function avatarFormSubmitHandler (event) {
 
   .then(data => {
     profileAvatar.setAttribute('src', data.avatar);
-    closePopup(popupAvatar);
     avatarPopupForm.reset();
+    resetButton();
+    closePopup(popupAvatar);
   })
   
   .catch(err => {

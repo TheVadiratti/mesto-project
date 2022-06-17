@@ -67,6 +67,15 @@ function toggleButtonState(inputList, buttonElement, prmObject) {
   }
 }
 
+// Ф сброса кнопки
+
+function resetButton() {
+  const activePopup = document.querySelector('.popup_opened');
+  const inputList = Array.from(activePopup.querySelectorAll('.popup__input'));
+  const button = activePopup.querySelector('.popup__button');
+  toggleButtonState(inputList, button, parameters);
+}
+
 // Ф для показа ошибки валидации
 
 function showError(formElement, inputElement, errorMessage, prmObject) {
@@ -98,5 +107,6 @@ enableValidation(parameters);
 
 export {
   removeErrors,
-  parameters
+  parameters,
+  resetButton
 }

@@ -94,8 +94,9 @@ function isValid(formElement, inputElement, prmObject) {
   }
 }
 
+enableValidation(parameters);
+
 export {
   removeErrors,
-  parameters,
-  enableValidation
-};
+  parameters
+}

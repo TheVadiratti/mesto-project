@@ -36,7 +36,6 @@ import {
 import {
   removeErrors,
   parameters,
-  enableValidation
 } from './validation.js';
 
 // Ф для закрытия попапа при нажатии на Esc
@@ -56,7 +55,6 @@ function openEditPopup() {
   openPopup(popupProfile);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
-  enableValidation(parameters);
 };
 
 // Ф для закрытия модального окна изменения данных профиля
@@ -70,7 +68,6 @@ function closeEditPopup() {
 
 function openAddPopup() {
   openPopup(popupAdd);
-  enableValidation(parameters);
 }
 
 // Ф для закрытия модального окна добавления места
@@ -144,7 +141,6 @@ function closeImagePopup() {
 
 function openAvatarPopup() {
   openPopup(popupAvatar);
-  enableValidation(parameters);
 }
 
 // Ф для закрытия модального окна изменения аватара

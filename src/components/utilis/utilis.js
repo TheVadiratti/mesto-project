@@ -47,6 +47,8 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
   cardCopy.querySelector('.content__card-heading').textContent = name;
   cardCopy.querySelector('.content__quantity').textContent = likes;
 
+  const likeButton = cardCopy.querySelector('.content__like-button');
+
   /**
    * 1) Включается слушатель лайка;
    * 2) Включается слушатель превью;
@@ -64,10 +66,10 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
 
   // проверка лайка
   if(likeButtonStatus) {
-    setLike(cardCopy.querySelector('.content__like-button'));
+    setLike(likeButton);
   }
     else {
-      removeLike(cardCopy.querySelector('.content__like-button'));
+      removeLike(likeButton);
     }
 
   // Возвращает готовую карточку

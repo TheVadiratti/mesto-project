@@ -87,6 +87,7 @@ function editFormSubmitHandler (event) {
   .then(data => {
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
+    closePopup(popupProfile);
   })
 
   .catch(err => {
@@ -96,8 +97,6 @@ function editFormSubmitHandler (event) {
   .finally(() => {
     renderLoading(popupProfile, true);
   })
-
-  closePopup(popupProfile);
 }
 
 // Ф для добавления нового места (карточки)
@@ -116,6 +115,7 @@ function addFormSubmitHandler (event) {
       hasMyLike(data),
       data._id
       ));
+    closePopup(popupAdd);
   })
 
   .catch(err => {
@@ -126,8 +126,6 @@ function addFormSubmitHandler (event) {
   .finally(() => {
     renderLoading(popupAdd, true);
   })
-
-  closePopup(popupAdd);
 }
 
 // Ф для закрытия превью

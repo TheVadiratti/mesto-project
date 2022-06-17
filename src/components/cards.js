@@ -71,16 +71,11 @@ function toggleLike(event) {
 
     deleteLike(cardID)
     
-      .then(res => {
-        if(res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
       .then(data => {
         event.target.nextElementSibling.textContent = data.likes.length;
         removeLike(event.target);
       })
+      
       .catch(err => {
         console.log(err);
       })
@@ -89,16 +84,11 @@ function toggleLike(event) {
 
       putLike(cardID)
     
-      .then(res => {
-        if(res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
       .then(data => {
         event.target.nextElementSibling.textContent = data.likes.length;
         setLike(event.target);
       })
+      
       .catch(err => {
         console.log(err);
       })

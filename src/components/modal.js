@@ -86,24 +86,19 @@ function closeAddPopup() {
 function editFormSubmitHandler (event) {
   event.preventDefault();
   changeProfile(inputEditName.value, inputEditDescription.value)
-  
-  .finally(() => {
-    renderLoading(popupProfile, false);
-  })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
   .then(data => {
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
     renderLoading(popupProfile, true);
   })
+
   .catch(err => {
     console.log(err);
     renderLoading(popupProfile, true);
+  })
+
+  .finally(() => {
+    renderLoading(popupProfile, false);
   })
 
   closePopup(popupProfile);
@@ -115,15 +110,6 @@ function addFormSubmitHandler (event) {
   event.preventDefault();
   addCard(inputAddName.value, inputAddLink.value)
 
-  .finally(() => {
-    renderLoading(popupAdd, false);
-  })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
   .then(data => {
     pageContent.prepend(createCard(
       data.name,
@@ -135,9 +121,14 @@ function addFormSubmitHandler (event) {
       ));
       renderLoading(popupAdd, true);
   })
+
   .catch(err => {
     console.log(err);
     renderLoading(popupAdd, true);
+  })
+
+  .finally(() => {
+    renderLoading(popupAdd, false);
   })
 
   closePopup(popupAdd);
@@ -170,24 +161,20 @@ function avatarFormSubmitHandler (event) {
   event.preventDefault();
   setAvatar(inputAvatarLink.value)
 
-  .finally(() => {
-    renderLoading(popupAvatar, false);
-  })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
   .then(data => {
     profileAvatar.setAttribute('src', data.avatar);
     closePopup(popupAvatar);
     avatarPopupForm.reset();
     renderLoading(popupAvatar, true);
   })
+  
   .catch(err => {
     console.log(err);
     renderLoading(popupAvatar, true);
+  })
+
+  .finally(() => {
+    renderLoading(popupAvatar, false);
   })
 }
 

@@ -42,7 +42,13 @@ function changeProfile(name, description) {
       name: name,
       about: description
     })
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function addCard(name, link) {
@@ -53,7 +59,13 @@ function addCard(name, link) {
       name: name,
       link: link
     })
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function deleteCard(id) {
@@ -62,7 +74,7 @@ function deleteCard(id) {
     headers: {
       authorization: config.headers.authorization
     }
-  });
+  })
 }
 
 function putLike(id) {
@@ -71,7 +83,13 @@ function putLike(id) {
     headers: {
       authorization: config.headers.authorization
     }
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function deleteLike(id) {
@@ -80,7 +98,13 @@ function deleteLike(id) {
     headers: {
       authorization: config.headers.authorization
     }
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function setAvatar(link) {
@@ -90,7 +114,13 @@ function setAvatar(link) {
     body: JSON.stringify({
       avatar: link
     })
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 export {

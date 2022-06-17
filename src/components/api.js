@@ -13,6 +13,7 @@ function getUserData() {
     }
   })
   .then(res => {
+    // !!! я не понимаю, что такое метод, проверяющий на ok. если это про .this, то мы не проходили это еще
     if(res.ok) {
       return res.json();
     }

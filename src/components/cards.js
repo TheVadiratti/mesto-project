@@ -12,6 +12,10 @@ import {
   deleteLike
 } from './api';
 
+import {
+  userID
+} from './profile';
+
 // Ф для добавления слушателя модальго окна с превью
 
 function openImagePopup(card, name, link) {
@@ -112,7 +116,7 @@ function setLikeListener(card) {
 // Ф для проверки на свою карточку
 
 function isMyCard(card) {
-  if(card.owner._id === 'a9497c41abc43b7e36cc01aa') {
+  if(card.owner._id === userID) {
     return true;
   }
   return false;
@@ -123,7 +127,7 @@ function isMyCard(card) {
 function hasMyLike(card) {
   const arrLikes = card.likes;
   return arrLikes.some(obj => {
-    return obj._id === 'a9497c41abc43b7e36cc01aa';
+    return obj._id === userID;
   })
 }
 

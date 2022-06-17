@@ -23,11 +23,15 @@ import {
 
 // Вызов функции, возвращающей fetch
 
+let userID;
+
 Promise.all([getUserData(), getCards()])
 
 .then(([userData, cardsArr]) => {
   setProfileData(userData.name, userData.about, userData.avatar);
-  console.log(cardsArr);
+
+ userID = userData._id;
+
   cardsArr.forEach(card => {
     pageContent.append(createCard(
       // параметры
@@ -50,4 +54,8 @@ function setProfileData(name, description, link) {
   profileName.textContent = name;
   profileDescription.textContent = description;
   profileAvatar.setAttribute('src', link);
+}
+
+export {
+  userID
 }

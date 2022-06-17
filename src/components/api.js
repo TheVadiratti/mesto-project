@@ -6,12 +6,18 @@ const config = {
   }
 }
 
-function getProfileData() {
+function getUserData() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: {
       authorization: config.headers.authorization
     }
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function getCards() {
@@ -19,7 +25,13 @@ function getCards() {
     headers: {
       authorization: config.headers.authorization
     }
-  });
+  })
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
 }
 
 function changeProfile(name, description) {
@@ -82,7 +94,7 @@ function setAvatar(link) {
 }
 
 export {
-  getProfileData,
+  getUserData,
   getCards,
   changeProfile,
   addCard,

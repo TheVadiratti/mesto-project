@@ -1,15 +1,12 @@
 import {
-  pageContent,
   popupImage
 } from './utilis/constants';
 
 import {
-  openPopup,
-  createCard
+  openPopup
 } from './utilis/utilis';
 
 import {
-  getCards,
   deleteCard,
   putLike,
   deleteLike
@@ -129,33 +126,6 @@ function hasMyLike(card) {
     return obj._id === 'a9497c41abc43b7e36cc01aa';
   })
 }
-
-// Ф для получения карточек с сервера
-
-getCards()
-
-.then(res => {
-  if(res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
-})
-.then(data => {
-  for(let i = 0; i < data.length; i++) {
-    pageContent.append(createCard(
-      // параметры
-      data[i].name,
-      data[i].link,
-      data[i].likes.length,
-      isMyCard(data[i]),
-      hasMyLike(data[i]),
-      data[i]._id
-      ));
-  }
-})
-.catch(err => {
-  console.log(err);
-})
 
 export {
   openImagePopup,

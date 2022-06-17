@@ -1,29 +1,45 @@
 // Загрузка данных профиля
 
 import {
-  getProfileData
+  getUserData,
+  getCards
 } from "./api";
 
 import {
   profileDescription,
   profileName,
-  profileAvatar
+  profileAvatar,
+  pageContent
 } from "./utilis/constants";
+
+import {
+  createCard
+} from './utilis/utilis';
+
+import {
+  isMyCard,
+  hasMyLike
+} from './cards';
 
 // Вызов функции, возвращающей fetch
 
-getProfileData()
+Promise.all([getUserData(), getCards()])
 
-.then(res => {
-  if(res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
+.then(([userData, cardsArr]) => {
+  setProfileData(userData.name, userData.about, userData.avatar);
+  console.log(cardsArr);
+  cardsArr.forEach(card => {
+    pageContent.append(createCard(
+      // параметры
+      card.name,
+      card.link,
+      card.likes.length,
+      isMyCard(card),
+      hasMyLike(card),
+      card._id
+      ));
+  })
 })
-.then(data => {
-  setProfileData(data.name, data.about, data.avatar);
-})
-
 .catch(err => {
   console.log(err);
 })

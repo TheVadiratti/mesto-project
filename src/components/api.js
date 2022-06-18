@@ -6,19 +6,20 @@ const config = {
   }
 }
 
+function checkResponse(res) {
+  if(res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
 function getUserData() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: {
       authorization: config.headers.authorization
     }
   })
-  .then(res => {
-    // !!! я не понимаю, что такое метод, проверяющий на ok. если это про .this, то мы не проходили это еще
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function getCards() {
@@ -27,12 +28,7 @@ function getCards() {
       authorization: config.headers.authorization
     }
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function changeProfile(name, description) {
@@ -44,12 +40,7 @@ function changeProfile(name, description) {
       about: description
     })
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function addCard(name, link) {
@@ -61,12 +52,7 @@ function addCard(name, link) {
       link: link
     })
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function deleteCard(id) {
@@ -85,12 +71,7 @@ function putLike(id) {
       authorization: config.headers.authorization
     }
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function deleteLike(id) {
@@ -100,12 +81,7 @@ function deleteLike(id) {
       authorization: config.headers.authorization
     }
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 function setAvatar(link) {
@@ -116,12 +92,7 @@ function setAvatar(link) {
       avatar: link
     })
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
+  .then(checkResponse)
 }
 
 export {

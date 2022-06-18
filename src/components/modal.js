@@ -76,8 +76,6 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
-  popupAdd.querySelector('.popup__form').reset();
-  removeErrors(popupAdd, parameters);
 }
 
 // Ф для изменения данных профиля
@@ -150,7 +148,6 @@ function openAvatarPopup() {
 function closeAvatarPopup() {
   closePopup(popupAvatar);
   (popupAvatar, parameters);
-  popupAvatar.querySelector('.popup__form').reset();
 }
 
 // Ф для изменения автарки

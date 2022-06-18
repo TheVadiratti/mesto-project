@@ -80,7 +80,7 @@ function closeAddPopup() {
 
 // Ф для изменения данных профиля
 
-function editFormSubmitHandler (event) {
+function handleProfileFormSubmit (event) {
   event.preventDefault();
   renderLoading(popupProfile, false);
   changeProfile(inputEditName.value, inputEditDescription.value)
@@ -102,7 +102,7 @@ function editFormSubmitHandler (event) {
 
 // Ф для добавления нового места (карточки)
 
-function addFormSubmitHandler (event) {
+function handleAddFormSubmit (event) {
   event.preventDefault();
   renderLoading(popupAdd, false);
   addCard(inputAddName.value, inputAddLink.value)
@@ -152,7 +152,7 @@ function closeAvatarPopup() {
 
 // Ф для изменения автарки
 
-function avatarFormSubmitHandler (event) {
+function handleAvatarFormSubmit (event) {
   event.preventDefault();
   renderLoading(popupAvatar, false);
   setAvatar(inputAvatarLink.value)
@@ -179,10 +179,10 @@ export {
   openAddPopup,
   closeAddPopup,
   closeImagePopup,
-  editFormSubmitHandler,
-  addFormSubmitHandler,
+  handleProfileFormSubmit,
+  handleAddFormSubmit,
   handleEscClose,
   openAvatarPopup,
   closeAvatarPopup,
-  avatarFormSubmitHandler
+  handleAvatarFormSubmit
 };

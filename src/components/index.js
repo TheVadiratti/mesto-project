@@ -24,11 +24,11 @@ import {
   openAddPopup,
   closeAddPopup,
   closeImagePopup,
-  editFormSubmitHandler,
-  addFormSubmitHandler,
+  handleProfileFormSubmit,
+  handleAddFormSubmit,
   openAvatarPopup,
   closeAvatarPopup,
-  avatarFormSubmitHandler
+  handleAvatarFormSubmit
 } from './modal.js';
 
 import {
@@ -63,11 +63,11 @@ closeButtonAddImage.addEventListener('click', closeAddPopup);
 
   // editFormSubmit
 
-editPopupForm.addEventListener('submit', editFormSubmitHandler);
+editPopupForm.addEventListener('submit', handleProfileFormSubmit);
 
   // addFormSubmit
 
-addPopupForm.addEventListener('submit', addFormSubmitHandler);
+addPopupForm.addEventListener('submit', handleAddFormSubmit);
 
   // closeImagePopup
 
@@ -83,4 +83,4 @@ closeButtonAvatar.addEventListener('click', closeAvatarPopup);
 
   // avatarFormSubmit
 
-avatarPopupForm.addEventListener('submit', avatarFormSubmitHandler);
+avatarPopupForm.addEventListener('submit', handleAvatarFormSubmit);

@@ -19,10 +19,11 @@ import {
 // Ф для добавления слушателя модальго окна с превью
 
 function setImageHandler(card, name, link) {
-  card.addEventListener('click', event => {
+  const image = card.querySelector('.content__image');
+  image.addEventListener('click', event => {
 
     // проверка, что нажата не корзинка
-    if (event.target.classList.contains('content__image')) {
+    if (event.target === image) {
 
       /**
        * 1) Добавляется фото;

@@ -7,7 +7,7 @@ import {
 } from '../modal';
 
 import {
-  openImagePopup,
+  setImageHandler,
   removeCard,
   setLikeListener,
   setLike,
@@ -55,7 +55,7 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
    * 3) Добавляется идентификатор.
   */
   setLikeListener(cardCopy);
-  openImagePopup(cardCopy, name, link);
+  setImageHandler(cardCopy, name, link);
   cardCopy.setAttribute('id', id);
 
   // проверка на свою

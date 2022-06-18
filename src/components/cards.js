@@ -18,7 +18,7 @@ import {
 
 // Ф для добавления слушателя модальго окна с превью
 
-function openImagePopup(card, name, link) {
+function setImageHandler(card, name, link) {
   card.addEventListener('click', event => {
 
     // проверка, что нажата не корзинка
@@ -131,7 +131,7 @@ function hasMyLike(card) {
 }
 
 export {
-  openImagePopup,
+  setImageHandler,
   setLikeListener,
   removeCard,
   setLike,

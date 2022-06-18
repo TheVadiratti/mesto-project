@@ -42,8 +42,10 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
   // Получает шаблон
   const cardCopy = getTemplate(cardTemplate);
 
+  const cardImage = cardCopy.querySelector('.content__image');
+
   // Вставляется фото и название
-  cardCopy.querySelector('.content__image').style.backgroundImage = `url(${link})`;
+  cardImage.style.backgroundImage = `url(${link})`;
   cardCopy.querySelector('.content__card-heading').textContent = name;
   cardCopy.querySelector('.content__quantity').textContent = likes;
 
@@ -55,7 +57,7 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
    * 3) Добавляется идентификатор.
   */
   setLikeListener(cardCopy);
-  setImageHandler(cardCopy, name, link);
+  setImageHandler(cardImage, name, link);
   cardCopy.setAttribute('id', id);
 
   // проверка на свою

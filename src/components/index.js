@@ -35,17 +35,11 @@ import {
   closePopup
 } from './utilis/utilis';
 
-import {
-  removeErrors,
-  parameters
-} from './validation';
-
   // Закрытие попапа по клику на оверлей
 
 popupList.forEach(popup => {
   popup.addEventListener('click', function(event) {
     if(event.target === popup) {
-      removeErrors(popup, parameters);
       closePopup(popup);
     }
   })

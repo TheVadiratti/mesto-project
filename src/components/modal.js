@@ -46,7 +46,6 @@ function handleEscClose(event) {
   if(event.key === 'Escape') {
     const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
-    removeErrors(popupActive, parameters);
   }
 }
 
@@ -54,6 +53,7 @@ function handleEscClose(event) {
 
 function openEditPopup() {
   openPopup(popupProfile);
+  removeErrors(popupProfile, parameters);
   inputEditName.value = profileName.textContent;
   inputEditDescription.value = profileDescription.textContent;
 };
@@ -62,13 +62,13 @@ function openEditPopup() {
 
 function closeEditPopup() {
   closePopup(popupProfile);
-  removeErrors(popupProfile, parameters);
 }
 
 // Ф для открытия модального окна добавления места
 
 function openAddPopup() {
   openPopup(popupAdd);
+  removeErrors(popupAdd, parameters);
 }
 
 // Ф для закрытия модального окна добавления места

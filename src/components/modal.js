@@ -145,7 +145,6 @@ function openAvatarPopup() {
 
 function closeAvatarPopup() {
   closePopup(popupAvatar);
-  (popupAvatar, parameters);
 }
 
 // Ф для изменения автарки

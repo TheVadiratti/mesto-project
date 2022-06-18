@@ -44,9 +44,8 @@ import {
 // Ф для закрытия попапа при нажатии на Esc
 
 function handleEscClose(event) {
-  const popupActive = document.querySelector('.popup_opened');
-
   if(event.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
     removeErrors(popupActive, parameters);
   }
@@ -150,7 +149,7 @@ function openAvatarPopup() {
 
 function closeAvatarPopup() {
   closePopup(popupAvatar);
-  removeErrors(popupAvatar, parameters);
+  (popupAvatar, parameters);
   popupAvatar.querySelector('.popup__form').reset();
 }
 

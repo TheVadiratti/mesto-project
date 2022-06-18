@@ -12,7 +12,6 @@ import {
   popupAvatar,
   inputAvatarLink,
   profileAvatar,
-  editPopupForm,
   addPopupForm,
   avatarPopupForm
 } from './utilis/constants';
@@ -88,7 +87,6 @@ function handleProfileFormSubmit (event) {
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
     closePopup(popupProfile);
-    editPopupForm.reset();
   })
 
   .catch(err => {

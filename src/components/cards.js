@@ -1,5 +1,7 @@
 import {
-  popupImage
+  popupImage,
+  photoPopupImage,
+  captionPopupImage
 } from './utilis/constants';
 
 import {
@@ -29,9 +31,9 @@ function setImageHandler(image, name, link) {
        * 2) Добавляется содержимое атрибута alt;
        * 3) Добавляется подпись к фото.
        */
-      popupImage.querySelector('.popup__image').setAttribute('src', `${link}`);
-      popupImage.querySelector('.popup__image').setAttribute('alt', `${name}`);
-      popupImage.querySelector('.popup__caption').textContent = name;
+      photoPopupImage.setAttribute('src', `${link}`);
+      photoPopupImage.setAttribute('alt', `${name}`);
+      captionPopupImage.textContent = name;
 
       // Открытие модального окна с фото
       openPopup(popupImage);

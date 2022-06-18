@@ -42,6 +42,7 @@ function createCard(name, link, likes, removeButtonStatus, likeButtonStatus, id)
   // Получает шаблон
   const cardCopy = getTemplate(cardTemplate);
 
+  // Находит картинку текущей карточки
   const cardImage = cardCopy.querySelector('.content__image');
 
   // Вставляется фото и название

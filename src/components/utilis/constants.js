@@ -67,7 +67,11 @@ export {
 // for cards.js ----------------------------------------------------------------------------
 
 const cardTemplate = document.querySelector('.cardTemplate').content;
+const photoPopupImage = popupImage.querySelector('.popup__image');
+const captionPopupImage = popupImage.querySelector('.popup__caption');
 
 export {
-  cardTemplate
+  cardTemplate,
+  photoPopupImage,
+  captionPopupImage
 }

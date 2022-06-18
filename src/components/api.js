@@ -62,6 +62,8 @@ function deleteCard(id) {
       authorization: config.headers.authorization
     }
   })
+
+  .then(checkResponse)
 }
 
 function putLike(id) {

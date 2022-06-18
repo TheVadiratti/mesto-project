@@ -61,13 +61,8 @@ function removeCard(card) {
   removeButton.addEventListener('click', event => {
     deleteCard(event.target.closest('.content__card').getAttribute('id'))
 
-    .then(res => {
-      if(res.ok) {
-        event.target.closest('.content__card').remove();
-      }
-      else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
+    .then(() => {
+      event.target.closest('.content__card').remove();
     })
 
     .catch(err => {

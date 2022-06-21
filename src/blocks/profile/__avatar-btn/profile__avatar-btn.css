@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   background-size: 26px;
   opacity: 0;
+  transition: all 0.2s;
 }
 
 .profile__avatar-btn:hover {
